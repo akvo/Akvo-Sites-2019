@@ -1,0 +1,151 @@
+/*
+	Theme Name: Akvo-Sites 2019
+	Theme URI: http://akvo.org
+	Description: Rework from the old theme
+	Author: Samuel Thomas
+	Version: 1.0
+*/
+
+body {
+	font-family: 'Open Sans';
+    background: #dddddd;
+    font-size: 16px;
+    line-height: 1.7;
+    padding-top: 20px;
+
+}
+
+.top-row {
+	margin-bottom: 15px;
+}
+
+.brand img {
+	width: auto;
+}
+
+
+.search-wrap {
+    background: #fff;
+    position: relative;
+    border-radius: 3px;
+}
+
+.search-wrap input.search-field.form-control {
+    width: 100%;
+    background: 0 0;
+    border: 0;
+}
+.search-wrap .input-group-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto!important;
+}
+
+.search-wrap .input-group-btn .btn {
+	color: #dadada;
+    border: 0;
+    background: 0 0;
+    font-size: 18px;
+    padding-top: 4px;
+}
+
+nav.navbar-collapse{
+	background: #FFF;
+	padding: 0;
+}
+
+@media (min-width: 768px){
+	nav ul.navbar-nav li{
+		height: 40px;
+		line-height: 40px;
+		float:left;
+		border-right:1px solid #fff;
+		border-bottom: 0;
+	}
+
+}
+
+.menu-mobile {
+    background: #F2F2F2;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+
+
+@media (min-width: 768px){
+	.navbar-header {
+	    float: left;
+	}
+}
+
+nav ul.navbar-nav li a {
+    background: #5b5b5b;
+    color: #ffffff;
+    height: 40px;
+    padding: 0 15px;
+    line-height: 40px;
+}
+
+nav ul.navbar-nav li:hover a, nav ul.navbar-nav li a:focus, nav ul.navbar-nav li.current-menu-item a {
+    background: #2023c9;
+    color: #dd9933;
+}
+
+nav ul.navbar-nav .dropdown-menu {
+    display: block;
+    position: relative;
+    top: auto;
+    left: auto;
+    float: none;
+    border: 0;
+    padding: 0;
+    min-width: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+nav ul.navbar-nav li:hover ul.dropdown-menu {
+	display: block;
+}
+
+@media (min-width: 768px){
+	nav ul.navbar-nav .dropdown-menu {
+	    position: absolute;
+	    top: 100%;
+	    left: 0;
+	    display: none;
+	    float: left;
+	}
+}
+
+nav ul.navbar-nav .dropdown-menu li {
+    background: #83b2db;
+}
+
+nav ul.navbar-nav .dropdown-menu li {
+    border: 0;
+    border-top: 1px solid #fff;
+    text-indent: 15px;
+    width: 100%;
+}
+
+.footer {
+    text-align: center;
+    color: #fff;
+}
+
+.footer .newsletter {
+	background:#1e73be;
+}
+
+.footer .fixed {
+	background: #175892;
+}
+
+.footer .fixed  a  {
+	display: block;
+    color: rgba(230,230,230,.6);
+    font-size: 2em;
+    text-decoration: none;
+}

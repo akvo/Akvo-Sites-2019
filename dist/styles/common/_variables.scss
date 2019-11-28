@@ -1,0 +1,75 @@
+// Glyphicons font path
+$icon-font-path:        "../fonts/";
+
+// Grid settings
+$main-sm-columns:       12;
+$sidebar-sm-columns:    4;
+
+//Fonts
+$font-family-base: 'Open Sans';
+
+//overrides
+$border-radius-base: 3px;
+
+// Colors
+$white: #ffffff; 
+$bg: #ffffff;
+$grijs: #e6e6e6;
+
+$brand-primary: #00a99d;
+
+$light-grijs: lighten($grijs, 5%);
+$primary-dark: darken($brand-primary, 18%);
+$primary-light: mix($brand-primary, $white, 40%);
+$footertxt: transparentize($grijs, .4);
+
+$infobar-blog: #a3d165;
+$infobar-news: #f9ba41;
+$infobar-video: #f47b50;
+$infobar-update: #54bce8;
+$infobar-flow: #54bce8;
+$infobar-page: #6d3a7d;
+$infobar-media: #9d897b;
+$infobar-map: #ad1c3c;
+$infobar-project: #7381fa;
+$infobar-testimonial: #007ba8;
+
+@mixin icons {
+	.type:before, .date:before {
+		font-family: 'FontAwesome';
+		margin-right: 6px;
+	}
+	.blog.type:before, &.blog .type:before, &.type-blog .type:before {
+		content: "\f040";
+	}
+	.post.type:before, &.post .type:before, &.type-post .type:before {
+		content: "\f1ea";
+	}
+	.update.type:before, &.update .type:before, &.type-update .type:before  {
+		content: "\f005";
+	}
+	.flow.type:before, &.flow .type:before, &.type-flow .type:before  {
+		content: "\f1fe";
+	}
+	.video.type:before, &.video .type:before, &.type-video .type:before  {
+		content: "\f03d";
+	}
+	.media.type:before, &.media .type:before, &.type-media .type:before {
+		content: "\f019";
+	}
+	.testimonial.type:before, &.testimonial .type:before, &.type-testimonial .type:before  {
+		content: "\f164";
+	}
+	.project.type:before, &.project .type:before, &.type-project .type:before  {
+		content: "\f02c";
+	}
+	.map.type:before, &.map .type:before, &.type-map .type:before  {
+		content: "\f041";
+	}
+	.page.type:before, &.page .type:before {
+		content: "\f016";
+	}
+	.date:before {
+		content: "\f073";
+	}
+}

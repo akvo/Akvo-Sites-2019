@@ -1,0 +1,26 @@
+@import "bootstrap/_bootstrap";
+@import "common/_variables";
+
+//enable these for deployment! Also avtivate wp sass plugin!
+// @import "common/_overrides";
+// @import "common/_calculate";
+
+// Automatically injected Bower dependencies via wiredep (never manually edit this block)
+// bower:scss
+// endbower
+
+@import "common/_global";
+@import "components/_buttons";
+@import "components/_comments";
+@import "components/_forms";
+@import "components/_grid";
+@import "components/_wp-classes";
+@import "components/_tables";
+@import "layouts/_header";
+@import "layouts/_sidebar";
+@import "layouts/_footer";
+@import "layouts/_pages";
+@import "layouts/_posts";
+@import "layouts/_cards";
+@import "layouts/_list";
+@import "layouts/_events";

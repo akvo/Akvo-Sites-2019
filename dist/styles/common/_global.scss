@@ -1,0 +1,48 @@
+html {
+	background: $primary-dark;
+	height:auto !important;
+}
+
+body {
+	background: $bg;
+	line-height:1.7;
+	font-size: 16px;
+}
+
+nav, .box-wrap, .filters {
+	font-size: 14px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight: 700;
+}
+
+img {
+	max-width: 100%;
+}
+
+blockquote {
+	border-color: $grijs;
+}
+
+.btn-primary, input[type=submit] {
+	transition:all .2s;
+}
+$screen-md-min: 760px;
+
+@media (min-width: $screen-md-min) {
+	.eq {
+	  display: -webkit-box;
+	  display: -webkit-flex;
+	  display: -ms-flexbox;
+	  display: flex;
+	}
+}
+
+.bold{
+	font-weight: bold;
+}
+
+.italic{
+	font-style:italic;
+}

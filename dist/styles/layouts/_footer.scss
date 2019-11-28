@@ -1,0 +1,114 @@
+.wp-pagenavi {
+	padding: 15px 0;
+	
+	a, span {
+		padding: 3px 10px;
+		margin: 0;
+		border: 1px solid $grijs;
+		border-right: 0;
+	}
+	a {
+		text-decoration: none;
+		&:hover {
+			@extend .current;
+		}
+
+	}
+	.current {
+		background-color: $primary-light;
+		color: $brand-primary;
+		border-color: $grijs !important;
+	}
+	span:last-child, a:last-child {
+		border-right: 1px solid $grijs;
+		border-top-right-radius: $border-radius-base;
+		border-bottom-right-radius: $border-radius-base;
+	}
+	span:first-child, a:first-child {
+		border-top-left-radius: $border-radius-base;
+		border-bottom-left-radius: $border-radius-base;
+	}
+}
+
+footer {
+	text-align: center;
+	
+	h3 {
+		font-size: 18px;
+		margin-top:10px;
+	}
+	section {
+		padding:10px 0;
+		&.widget_synved_social_follow { padding-top:0; }
+	}
+	.twitter {
+		background: $primary-light;
+		color:#333;
+		//twitter
+		a {
+			color:#333;
+			&:hover {
+				color:#333;
+				text-decoration: none;
+			}
+		}
+		.tweet {
+			margin:10px 0;
+			border-top:1px solid #333;
+			padding-top:10px;
+			&:first-of-type {
+				border-top:none;
+				padding-top:0;
+			}
+		}
+		.tweet_profile_img {
+			float:left;
+			width: 40px;
+			height: 40px;
+			border-radius:$border-radius-base;
+			overflow: hidden;
+			margin-right: 10px;
+			margin-top:5px;
+		}
+		.tweet_primary_meta {
+			display: none;
+		}
+		.tweet_text {
+			text-align: center;
+		}
+		.tweet_secondary_meta {
+			font-size: .8em;
+		}
+		.tweet_intents a { margin:0 5px; }
+		.tweet_icon_reply:before, .tweet_icon_retweet:before, .tweet_icon_favourite:before {
+			font-family: 'FontAwesome';
+			margin-right: 5px;
+		}
+		.tweet_icon_reply:before {
+			content: "\f112";
+		}
+		.tweet_icon_retweet:before {
+			  content: "\f079";
+		}
+		.tweet_icon_favourite:before {
+			content: "\f005";
+		}
+	}
+	.custom {
+		background: $brand-primary;
+		
+		.btn {
+			background: $primary-dark;
+			color:$white;
+		}
+	}
+	.fixed {
+		background: $primary-dark;
+		color: $footertxt;
+		padding:10px 0;
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+}
