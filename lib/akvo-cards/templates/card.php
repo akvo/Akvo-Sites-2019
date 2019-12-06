@@ -15,6 +15,7 @@
 	</h3>
 	<?php if( isset( $atts['content'] ) && count( $atts['content'] ) ):?>
 	<div class='card-content text-muted'>
+		<?php echo count( $atts['content'] );?>
 		<?php echo truncate($atts['content'], 130);?>
 	</div>
 	<?php endif;?>
