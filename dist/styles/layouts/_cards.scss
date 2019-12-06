@@ -5,6 +5,12 @@
 	font-size: 14px;
 	overflow: hidden;
 	min-height: 400px;
+	border: #eee solid 1px;
+
+	a[href]{
+		text-decoration: none;
+		color: inherit;
+	}
 
 	h3 a[href]{
 		text-decoration: none;
@@ -30,7 +36,12 @@
     text-transform: capitalize;
 	}
 
-	.card-content{ padding: 20px;}
+	.card-content{ padding: 20px; position: relative; height: 230px;}
+
+	.card-date{
+		position: absolute;
+		bottom: 0;
+	}
 
 	.card-excerpt{ min-height: 95px; }
 

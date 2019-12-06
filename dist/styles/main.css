@@ -9185,6 +9185,11 @@ article .intro, .article .intro {
   font-size: 14px;
   overflow: hidden;
   min-height: 400px;
+  border: #eee solid 1px;
+}
+.card a[href] {
+  text-decoration: none;
+  color: inherit;
 }
 .card h3 a[href] {
   text-decoration: none;
@@ -9209,6 +9214,12 @@ article .intro, .article .intro {
 }
 .card .card-content {
   padding: 20px;
+  position: relative;
+  height: 230px;
+}
+.card .card-date {
+  position: absolute;
+  bottom: 0;
 }
 .card .card-excerpt {
   min-height: 95px;
