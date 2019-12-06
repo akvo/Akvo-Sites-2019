@@ -231,7 +231,7 @@
 			wp_enqueue_style( 'fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, null);
 
 			/* AKVO SITES STYLESHEET */
-			wp_enqueue_style( 'sage_css', get_template_directory_uri().'/dist/styles/main.css', false, '2.2.1');
+			wp_enqueue_style( 'sage_css', get_template_directory_uri().'/dist/styles/main.css', false, time() );
 
 			/* COMMENTS REPLY JS */
 			if (is_single() && comments_open() && get_option('thread_comments')) { wp_enqueue_script('comment-reply'); }

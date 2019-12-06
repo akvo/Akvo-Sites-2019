@@ -3,18 +3,18 @@
 //include("color.php");
 	use Mexitek\PHPColors\Color;
 
-	
+
 	add_action( 'customize_register', function($wp_customize){
-		
+
 		global $akvo_customize;
-		
+
 		/** MAIN AKVO PANEL */
 		$akvo_customize->panel( $wp_customize, 'akvo_theme_panel', 'Theme Options' );
-		
+
 		/* All our sections, settings, and controls will be added here */
-   		
+
    		$akvo_customize->section( $wp_customize, 'akvo_theme_panel', 'akvo_color', 'Adjust Colors', '');
-		
+
 		$colors = array(
 			'main_color' 		=> array(
 				'default'		=> '#00a99d',
@@ -24,7 +24,7 @@
 				'default'		=> '#ffffff',
 				'label'			=> 'Background'
 			),
-			
+
 			'grijs'				=> array(
 				'default'		=> '#e6e6e6',
 				'label'			=> 'Shades of grey'
@@ -70,35 +70,35 @@
 				'label'			=> 'Media Item'
 			),
 		);
-		
+
 		foreach( $colors as $color_id => $color ){
-		
+
 			$akvo_customize->color( $wp_customize, 'akvo_color', $color_id, $color['label'], $color['default'] );
-			
-				
+
+
 		}
-		
+
 	} );
 
 
 
 
 	add_action( 'akvo_sites_css', function(){
-		
+
 		/* MAIN COLOR */
 		$main = get_option('main_color') ? get_option('main_color') : ( get_theme_mod('main_color') ? get_theme_mod('main_color') : '#00a99d' );
-		
-		$main2 = new Color("$main"); 
+
+		$main2 = new Color("$main");
 		$licht = '#'.$main2->mix('ffffff', 10);
 		$donker = '#'.$main2->darken();
-		
+
 		/* SECONDARY COLOR */
 		$grijs = get_option('grijs') ? get_option('grijs') : ( get_theme_mod('grijs') ? get_theme_mod('grijs') : '#e6e6e6');
-		
+
 		$grijs2 = new Color("$grijs");
 		$lichtgrijs = '#'.$grijs2->lighten(5);
 		$donkergrijs = '#'.$grijs2->darken(10);
-		
+
 		if($grijs == "#ffffff") $hovergrijs = "#e6e6e6";
 		else $hovergrijs = $grijs;
 
@@ -123,9 +123,9 @@
 			'card-testimonial'	=> get_option('info_bar_testimonial') ? get_option('info_bar_testimonial') : ( get_theme_mod('info_bar_testimonial') ? get_theme_mod('info_bar_testimonial') : '#007ba8' ),
 			'card-flow'			=> get_option('info_bar_flow') ? get_option('info_bar_flow') : ( get_theme_mod('info_bar_flow') ? get_theme_mod('info_bar_flow') : '#54bce8' ),
 			'card-news'			=> get_option('info_bar_news') ? get_option('info_bar_news') : ( get_theme_mod('info_bar_news') ? get_theme_mod('info_bar_news') : '#f9ba41' ),
-			
+
 		);
-		
+
 		$items = array(
 			array(
 				'selector'	=> 'html',
@@ -176,7 +176,7 @@
 				)
 			),
 			array(
-				'selector'	=> '.card, .article .bg, article .bg, .filters, .breadcrumbs, .search-wrap',
+				'selector'	=> '.article .bg, article .bg, .filters, .breadcrumbs, .search-wrap',
 				'styles'	=> array(
 					'background'	=> 'lighter_bg'
 				)
@@ -218,28 +218,28 @@
 				)
 			),
 		);
-		
+
 		/* CARD TYPES - BACKGROUND */
 		$akvo_card_obj = new Akvo_Card;
-		$types = $akvo_card_obj->get_types(); 
-		
-		foreach($types as $type=>$label){ 
-			
+		$types = $akvo_card_obj->get_types();
+
+		foreach($types as $type=>$label){
+
 			$temp = array(
 				'selector'	=> '.card.' . $type . ' .card-info',
 				'styles'	=> array(
 					'background'	=> 'card-'.$type
 				)
 			);
-			
+
 			array_push( $items, $temp );
-			
+
 		}
-		
-		
+
+
 		global $akvo;
 		$akvo->print_css( $options, $items );
-		
+
 		/* SMALL SCREEN CSS SELECTORS */
 		$sm_items = array(
 			array(
@@ -260,9 +260,9 @@
 					'background'	=> 'main_color'
 				)
 			),
-			
+
 		);
-		
+
 		$akvo->print_css( $options, $sm_items, '@media (min-width: 768px)' );
-		
+
 	});
