@@ -13,9 +13,9 @@
 	<h3 class='card-title'>
 		<a href="<?php _e($atts['link']);?>"><?php _e($atts['title']);?></a>
 	</h3>
-	<?php if( isset( $atts['content'] ) && count( $atts['content'] ) ):?>
+	<?php if( isset( $atts['content'] ) && strlen( $atts['content'] ) ):?>
 	<div class='card-content text-muted'>
-		<?php echo count( $atts['content'] );?>
+		<?php echo strlen( $atts['content'] );?>
 		<?php echo truncate($atts['content'], 130);?>
 	</div>
 	<?php endif;?>
