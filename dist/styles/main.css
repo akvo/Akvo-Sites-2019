@@ -9195,7 +9195,7 @@ article .intro, .article .intro {
   height: 150px;
   background-size: cover;
   background-position: top center;
-  margin: 0 0 20px;
+  margin: 0;
   background-image: url("../images/placeholder800x400.jpg");
   position: relative;
 }
@@ -9208,8 +9208,10 @@ article .intro, .article .intro {
   text-transform: capitalize;
 }
 .card .card-content {
-  overflow: hidden;
-  height: 95px;
+  padding: 20px;
+}
+.card .card-excerpt {
+  min-height: 95px;
 }
 .card .card-title {
   margin: 0 0 20px;

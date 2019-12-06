@@ -16,7 +16,7 @@
 		height: 150px;
 		background-size: cover;
 		background-position: top center;
-		margin: 0 0 20px;
+		margin: 0;
 		background-image: url('../images/placeholder800x400.jpg');
 		position: relative;
 	}
@@ -30,7 +30,9 @@
     text-transform: capitalize;
 	}
 
-	.card-content{ overflow: hidden; height: 95px; }
+	.card-content{ padding: 20px;}
+
+	.card-excerpt{ min-height: 95px; }
 
 	.card-title{
 		margin: 0 0 20px;
