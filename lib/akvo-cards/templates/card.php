@@ -13,8 +13,10 @@
 	<h3 class='card-title'>
 		<a href="<?php _e($atts['link']);?>"><?php _e($atts['title']);?></a>
 	</h3>
+	<?php if( isset( $atts['content'] ) ):?>
 	<div class='card-content text-muted'>
 		<?php echo truncate($atts['content'], 130);?>
 	</div>
+<?php endif;?>
 	<div class="card-date"><?php _e( 'Published on '. $atts['date'] );?></div>
 </div>

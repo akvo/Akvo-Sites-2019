@@ -9184,6 +9184,7 @@ article .intro, .article .intro {
   width: 100%;
   font-size: 14px;
   overflow: hidden;
+  min-height: 400px;
 }
 .card h3 a[href] {
   text-decoration: none;
