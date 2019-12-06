@@ -14,7 +14,9 @@
 		<h3 class='card-title'>
 			<a href="<?php _e($atts['link']);?>"><?php _e($atts['title']);?></a>
 		</h3>
+		<?php if( strlen( $atts['title'] ) < 30 ) :?>
 		<div class="card-excerpt text-muted"><?php echo truncate($atts['content'], 130);?></div>
+		<?php endif;?>
 		<div class="card-date"><?php _e( 'Published on '. $atts['date'] );?></div>
 	</div>
 </div>
