@@ -9,21 +9,10 @@ body {
 	font-size: 16px;
 }
 
-nav, .box-wrap, .filters {
-	font-size: 14px;
-}
-
-h1,h2,h3,h4,h5,h6 {
-	font-weight: 700;
-}
-
-img {
-	max-width: 100%;
-}
-
-blockquote {
-	border-color: $grijs;
-}
+nav, .box-wrap, .filters { font-size: 14px; }
+h1,h2,h3,h4,h5,h6 { font-weight: 700; }
+img { max-width: 100%; }
+blockquote { border-color: $grijs; }
 
 .btn-primary, input[type=submit] {
 	transition:all .2s;
@@ -39,10 +28,33 @@ $screen-md-min: 760px;
 	}
 }
 
-.bold{
-	font-weight: bold;
-}
+.bold{ font-weight: bold; }
+.italic{ font-style:italic; }
 
-.italic{
-	font-style:italic;
+nav.navigation.pagination{
+
+	background: none;
+
+	.page-numbers{
+		text-decoration: none;
+		display: inline-block;
+		padding: 7px 10px;
+		margin: 0 2px 0 0;
+		line-height: 1;
+		border-radius: 50%;
+	}
+
+	.page-numbers.current, .page-numbers:hover{
+		background: #eee;
+	}
+
+	.page-numbers.dots:hover, .page-numbers.prev:hover, .page-numbers.next:hover{
+		background: none;
+	}
+
+	.page-numbers.prev, .page-numbers.next{
+		text-decoration: underline;
+		padding: 7px 0; 
+	}
+
 }

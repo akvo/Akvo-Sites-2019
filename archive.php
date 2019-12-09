@@ -88,15 +88,27 @@
 					</div> <!-- ARCHIVES LIST -->
 
 					<?php if( $wp_query->max_num_pages > 1 ): ?>
+
+						<?php
+							the_posts_pagination( array(
+    						'mid_size'  => 2,
+    						'prev_text' => __( 'Previous', 'textdomain' ),
+    						'next_text' => __( 'Next', 'textdomain' ),
+							) );
+						?>
+
+						<?php /*
+
          	<!-- PAGINATION STARTS HERE -->
-					<div class="row">
+					<div class="row" style="margin-bottom: 30px;">
 						<div class="col-sm-12 text-center">
 							<button data-behaviour='ajax-loading' data-list="#archives-list" class="btn btn-default">Load more&nbsp;<i class="fa fa-refresh"></i></button>
 						</div>
 					</div>
 					<!-- PAGINATION ENDS HERE -->
+					*/
+					?>
 					<?php endif; ?>
-
 			<?php else: ?>
 				<!-- IF WP QUERY RETURNS NO RESULTS -->
 				<div class="alert alert-warning">No results were found.</div>

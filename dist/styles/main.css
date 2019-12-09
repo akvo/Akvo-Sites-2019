@@ -7669,6 +7669,28 @@ blockquote {
   font-style: italic;
 }
 
+nav.navigation.pagination {
+  background: none;
+}
+nav.navigation.pagination .page-numbers {
+  text-decoration: none;
+  display: inline-block;
+  padding: 7px 10px;
+  margin: 0 2px 0 0;
+  line-height: 1;
+  border-radius: 50%;
+}
+nav.navigation.pagination .page-numbers.current, nav.navigation.pagination .page-numbers:hover {
+  background: #eee;
+}
+nav.navigation.pagination .page-numbers.dots:hover, nav.navigation.pagination .page-numbers.prev:hover, nav.navigation.pagination .page-numbers.next:hover {
+  background: none;
+}
+nav.navigation.pagination .page-numbers.prev, nav.navigation.pagination .page-numbers.next {
+  text-decoration: underline;
+  padding: 7px 0;
+}
+
 .comment-list {
   padding-left: 0;
   list-style: none;
@@ -9220,6 +9242,8 @@ article .intro, .article .intro {
 .card .card-date {
   position: absolute;
   bottom: 0;
+  color: #555;
+  font-weight: bold;
 }
 .card .card-excerpt {
   min-height: 95px;
