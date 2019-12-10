@@ -70,7 +70,7 @@
 								$text = excerpt_remove_blocks( $text );
 								$text = apply_filters( 'the_content', $text );
         				$text = str_replace( ']]>', ']]&gt;', $text );
-								$excerpt = wp_trim_words( $text, 200, '' );
+								$excerpt = wp_trim_words( $text, 130, '' );
 							}
 
 							//echo $excerpt;
