@@ -5,6 +5,9 @@
 	if($akvo_card_options && array_key_exists('read_more_text', $akvo_card_options)){
 		$atts['read_more_text'] = $akvo_card_options['read_more_text'];
 	}
+
+	//print_r($atts);
+
 ?>
 <div class='card <?php _e(self::slugify($atts['type']));?>'>
 	<a href="<?php _e($atts['link']);?>">
@@ -13,11 +16,9 @@
 		</div>
 		<div class='card-content'>
 			<h3 class='card-title'>
-				<?php _e($atts['title']);?>
+				<?php _e( $this->trimmed_text( $atts['title'], 65 ) );?>
 			</h3>
-			<?php if( strlen( $atts['title'] ) < 40 ) :?>
-			<div class="card-excerpt text-muted"><?php echo truncate($atts['content'], 130);?></div>
-			<?php endif;?>
+			<div class="card-excerpt text-muted"><?php _e( $this->trimmed_text($atts['content'], 130 ) );?></div>
 			<div class="card-date"><?php _e( 'Published on '. $atts['date'] );?></div>
 		</div>
 	</a>

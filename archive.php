@@ -65,8 +65,15 @@
 								$excerpt = $post->post_excerpt;
 							}
 							else{
-								$excerpt = wp_trim_excerpt();
+								$text = get_the_content();
+								$text = strip_shortcodes( $text );
+								$text = excerpt_remove_blocks( $text );
+								$text = apply_filters( 'the_content', $text );
+        				$text = str_replace( ']]>', ']]&gt;', $text );
+								$excerpt = wp_trim_words( $text, 200, '' );
 							}
+
+							//echo $excerpt;
 
 							$shortcode .= 'content="'.$excerpt.'" ';			// POST EXCERPT
         			$shortcode .= 'link="'.get_the_permalink().'" ';			// POST PERMALINK
@@ -80,6 +87,8 @@
 							}
 
 							$shortcode .= "]"; 																		// SHORTCODE END
+
+							//echo $shortcode;
 
 							echo do_shortcode( $shortcode );											// PRINT SHORTCODE
          		?>
