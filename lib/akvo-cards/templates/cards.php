@@ -22,7 +22,7 @@
 	<?php endforeach;?>
 </div>
 <?php if( $atts['pagination'] && count( $data ) ): /* lazy loading pagination to be enabled only when it is set in the shortcode */ ?>
-<div class="row">
+<div class="row" style="margin-bottom: 30px;">
 	<div class="col-sm-12 text-center">
 		<button data-behaviour='ajax-loading' data-list="#cards-list" class="btn btn-default">Load more&nbsp;<i class="fa fa-refresh"></i></button>
 	</div>
