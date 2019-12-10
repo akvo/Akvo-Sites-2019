@@ -8,7 +8,7 @@
 	$template = $akvo_filters->get_template( $post_type );								// GET TEMPLATE SELECTED FROM THE CUSTOMISE SECTION
 
 	/* COLUMN CLASS */
-	$col_class = 'col-md-4';
+	$col_class = 'col';
 	if( $template == 'list' ){ $col_class = 'col-md-12'; }
 
 	$archives_class = 'col-md-12';
@@ -31,7 +31,7 @@
 
 			<?php if( have_posts() ):?>
 
-				<div id="archives-list" class="row" data-target="<?php _e( '#archives-list .'.$col_class.'.eq' );?>">
+				<div id="archives-list" class="row-col3" data-target="<?php _e( '#archives-list .'.$col_class.'.eq' );?>">
 
 				<?php while ( have_posts() ) : the_post();?>
 
@@ -73,7 +73,7 @@
         				$text = str_replace( ']]>', ']]&gt;', $text );
 								$text = str_replace( ']', '', $text );
 								$text = str_replace( '[', '', $text );
-								$excerpt = wp_trim_words( $text, 130, '' );
+								$excerpt = wp_trim_words( $text, 270, '' );
 							}
 
 							//echo $excerpt;

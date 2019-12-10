@@ -9200,14 +9200,36 @@ article .intro, .article .intro {
     text-transform: capitalize;
   }
 }
+.row-col3 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.row-col3 .col {
+  display: flex;
+  width: 100%;
+  padding: 0.75em 0.5em;
+}
+@media (min-width: 60em) {
+  .row-col3 .col {
+    width: 33%;
+  }
+  .row-col3 .col:nth-child(3n+1) {
+    padding-left: 0;
+    padding-right: 1em;
+  }
+  .row-col3 .col:nth-child(3n) {
+    padding-right: 0;
+    padding-left: 1em;
+  }
+}
+
 .card {
   text-align: left;
-  margin: 20px 0px;
   width: 100%;
   font-size: 14px;
   overflow: hidden;
-  min-height: 400px;
   border: #eee solid 1px;
+  position: relative;
 }
 .card a[href] {
   text-decoration: none;
@@ -9237,16 +9259,16 @@ article .intro, .article .intro {
 .card .card-content {
   padding: 20px;
   position: relative;
-  height: 230px;
 }
 .card .card-date {
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
+  left: 20px;
   color: #555;
   font-weight: bold;
 }
 .card .card-excerpt {
-  min-height: 95px;
+  margin-bottom: 40px;
 }
 .card .card-title {
   margin: 0 0 20px;

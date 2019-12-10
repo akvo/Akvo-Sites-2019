@@ -6,7 +6,7 @@
 		$atts['read_more_text'] = $akvo_card_options['read_more_text'];
 	}
 
-	
+
 ?>
 <div class='card <?php _e(self::slugify($atts['type']));?>'>
 	<a href="<?php _e($atts['link']);?>">
@@ -15,10 +15,10 @@
 		</div>
 		<div class='card-content'>
 			<h3 class='card-title'>
-				<?php _e( $this->trimmed_text( $atts['title'], 65 ) );?>
+				<?php _e( $atts['title'] );?>
 			</h3>
-			<div class="card-excerpt text-muted"><?php _e( $this->trimmed_text($atts['content'], 130 ) );?></div>
-			<div class="card-date"><?php _e( 'Published on '. $atts['date'] );?></div>
+			<div class="card-excerpt text-muted"><?php _e( $this->trimmed_text($atts['content'], 270 ) );?></div>
 		</div>
 	</a>
+	<div class="card-date"><?php _e( 'Published on '. $atts['date'] );?></div>
 </div>
