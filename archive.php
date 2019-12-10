@@ -8,7 +8,7 @@
 	$template = $akvo_filters->get_template( $post_type );								// GET TEMPLATE SELECTED FROM THE CUSTOMISE SECTION
 
 	/* COLUMN CLASS */
-	$col_class = 'col-md-4';
+	$col_class = 'col';
 	if( $template == 'list' ){ $col_class = 'col-md-12'; }
 
 	$archives_class = 'col-md-12';
@@ -31,7 +31,7 @@
 
 			<?php if( have_posts() ):?>
 
-				<div id="archives-list" class="row" data-target="<?php _e( '#archives-list .'.$col_class.'.eq' );?>">
+				<div id="archives-list" class="row-col3" data-target="<?php _e( '#archives-list .'.$col_class.'.eq' );?>">
 
 				<?php while ( have_posts() ) : the_post();?>
 
@@ -56,7 +56,8 @@
 							//$img = akvo_featured_img( $post_id );
         			if( $img = akvo_featured_img( $post_id ) ){ $shortcode .= 'img="'.$img.'" '; } 	// FEATURED IMAGE OF THE POST
 
-							$shortcode .= 'title="'.get_the_title().'" ';					// POST TITLE
+							$title = get_the_title();
+							$shortcode .= 'title="'.$title.'" ';					// POST TITLE
         			$shortcode .= 'date="'.get_the_date().'" ';						// POST DATE
 
 							// #477 - removing html tags and shortcodes from the excerpt
@@ -65,8 +66,17 @@
 								$excerpt = $post->post_excerpt;
 							}
 							else{
-								$excerpt = wp_trim_excerpt();
+								$text = get_the_content();
+								$text = strip_shortcodes( $text );
+								$text = excerpt_remove_blocks( $text );
+								$text = apply_filters( 'the_content', $text );
+        				$text = str_replace( ']]>', ']]&gt;', $text );
+								$text = str_replace( ']', '', $text );
+								$text = str_replace( '[', '', $text );
+								$excerpt = wp_trim_words( $text, 270, '' );
 							}
+
+							//echo $excerpt;
 
 							$shortcode .= 'content="'.$excerpt.'" ';			// POST EXCERPT
         			$shortcode .= 'link="'.get_the_permalink().'" ';			// POST PERMALINK
@@ -80,6 +90,8 @@
 							}
 
 							$shortcode .= "]"; 																		// SHORTCODE END
+
+							//echo $shortcode;
 
 							echo do_shortcode( $shortcode );											// PRINT SHORTCODE
          		?>
