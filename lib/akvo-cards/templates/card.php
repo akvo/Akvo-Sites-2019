@@ -6,8 +6,7 @@
 		$atts['read_more_text'] = $akvo_card_options['read_more_text'];
 	}
 
-	//print_r($atts);
-
+	
 ?>
 <div class='card <?php _e(self::slugify($atts['type']));?>'>
 	<a href="<?php _e($atts['link']);?>">

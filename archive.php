@@ -56,7 +56,8 @@
 							//$img = akvo_featured_img( $post_id );
         			if( $img = akvo_featured_img( $post_id ) ){ $shortcode .= 'img="'.$img.'" '; } 	// FEATURED IMAGE OF THE POST
 
-							$shortcode .= 'title="'.get_the_title().'" ';					// POST TITLE
+							$title = get_the_title();
+							$shortcode .= 'title="'.$title.'" ';					// POST TITLE
         			$shortcode .= 'date="'.get_the_date().'" ';						// POST DATE
 
 							// #477 - removing html tags and shortcodes from the excerpt
@@ -70,6 +71,8 @@
 								$text = excerpt_remove_blocks( $text );
 								$text = apply_filters( 'the_content', $text );
         				$text = str_replace( ']]>', ']]&gt;', $text );
+								$text = str_replace( ']', '', $text );
+								$text = str_replace( '[', '', $text );
 								$excerpt = wp_trim_words( $text, 130, '' );
 							}
 
