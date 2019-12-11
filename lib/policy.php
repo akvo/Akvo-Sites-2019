@@ -6,43 +6,45 @@
 */
 
 class PRIVACY_POLICY_PAGE{
-	
+
     public function __construct(){
-		
+
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		
+
 		add_action( 'admin_head', array( $this, 'admin_head' ) );
-		
+
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		
+
 		// Register the new dashboard widget with the 'wp_dashboard_setup' action
 		add_action('wp_dashboard_setup', function(){
 			wp_add_dashboard_widget('dashboard_widget', 'Privacy policy and terms', array( $this, 'dashboard_widget_function' ) );
 		} );
-		
+
     }
-	
+
 	/* GETTER AND SETTER FUNCTIONS */
 	function get_privacy_policy(){
 		$current_user = get_current_user_id();
         return get_user_meta( $current_user, 'privacy_policy', true );
 	}
-	
+
 	function set_privacy_policy( $value ){
 		update_user_meta( get_current_user_id(), 'privacy_policy', $value );
 	}
 	/* GETTER AND SETTER FUNCTIONS */
-	
-	
+
+
 	function admin_init(){
 		/*
 		* Redirects the user to the policy page,
 		* if the user has not signed the policy terms.
 		* And if signed direct the use to dashboard
 		*/
-		
-		if( $_SERVER['PHP_SELF'] != '/wp-admin/admin-ajax.php' ){	// CHECK IF THE CURRENT ADMIN REQUEST IS NOT FOR AJAX ACTIONS
-		
+
+		//if( $_SERVER['PHP_SELF'] != '/wp-admin/admin-ajax.php' ){
+
+		if ( !(strpos($_SERVER['PHP_SELF'], '/wp-admin/admin-ajax.php') !== false) ) {													// CHECK IF THE CURRENT ADMIN REQUEST IS NOT FOR AJAX ACTIONS
+
 			$privacy_policy = $this->get_privacy_policy();
 			$page = isset( $_GET['page'] ) ? $_GET['page'] : '';
 			if( !$privacy_policy && $page != 'options_page_slug' ) {
@@ -50,7 +52,7 @@ class PRIVACY_POLICY_PAGE{
 				wp_redirect(admin_url('admin.php?page=options_page_slug'));  // or whatever success page
 				exit;
 			}
-			
+
 			/* 	Update user meta table
 			* 	@return datetime to database table
 			*/
@@ -62,11 +64,11 @@ class PRIVACY_POLICY_PAGE{
 			}
 		}
 	}
-	
+
     function admin_menu(){
-        
+
         $privacy_policy = $this->get_privacy_policy();
-		
+
         if (!$privacy_policy) {
             add_options_page(
                 'Privacy_policy',
@@ -104,7 +106,7 @@ class PRIVACY_POLICY_PAGE{
 			</div>
 		</div>
 	<?php
-		
+
 		/**Hide the radio button and the submit once clicked*/
 		$privacy_policy = $this->get_privacy_policy();
 		if( $privacy_policy ):
@@ -117,8 +119,8 @@ class PRIVACY_POLICY_PAGE{
 		endif;
 
 	}
-	
-	
+
+
 	function admin_head() {
 		/** Hide the admin menu and top bar */
 		$privacy_policy = $this->get_privacy_policy();
@@ -149,16 +151,16 @@ class PRIVACY_POLICY_PAGE{
 			label{ font-weight: 700;}
 
 		</style>
-	<?php 
+	<?php
 	}
-	
+
 	// Function that outputs the contents of the dashboard widget
-	function dashboard_widget_function( $post, $callback_args ){ 
+	function dashboard_widget_function( $post, $callback_args ){
 	?>
 		<label>Read our <a target="_blank" href="https://akvo.org/akvo-foundation-general-privacy-policy/akvo-sites-privacy-policy/">Akvo Sites privacy policy</a> & our <a target="_blank" href="https://akvo.org/help/akvo-policies-and-terms-2/akvo-saas-terms-of-service/">SaaS Terms of Service</a>.</label>
 	<?php
 	}
-	
+
 }
 
 

@@ -22,9 +22,13 @@
 	<?php endforeach;?>
 </div>
 <?php if( $atts['pagination'] && count( $data ) ): /* lazy loading pagination to be enabled only when it is set in the shortcode */ ?>
-<div class="row" style="margin-bottom: 30px;">
-	<div class="col-sm-12 text-center">
-		<button data-behaviour='ajax-loading' data-list="#cards-list" class="btn btn-default">Load more&nbsp;<i class="fa fa-refresh"></i></button>
+	<?php if( 'lazy' == $atts['pagination_style'] ):?>
+	<div class="row" style="margin-bottom: 30px;">
+		<div class="col-sm-12 text-center">
+			<button data-behaviour='ajax-loading' data-list="#cards-list" class="btn btn-default">Load more&nbsp;<i class="fa fa-refresh"></i></button>
+		</div>
 	</div>
-</div>
+	<?php else:?>
+		<?php $this->pagination( $this->get_count_based_on_type( $atts ), $atts['posts_per_page'], $atts['page'] );?>
+	<?php endif;?>
 <?php endif;?>

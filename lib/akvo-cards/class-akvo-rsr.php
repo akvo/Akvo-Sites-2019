@@ -21,15 +21,20 @@
 			}
 		}
 
-		function get_json_data( $data_feed_id ){
+		function get_json_data( $atts ){
+
+			return $this->get_data_feed_response( $atts );
+
+			/*
+			$data_feed_id = $atts['rsr-id'];
 
 			$shortcode_str = '[data_feed name="'.$data_feed_id.'"]';
 
-			$data = do_shortcode( $shortcode_str ); 		/* Dependancy on the Data Feed Plugin */
+			$data = do_shortcode( $shortcode_str ); 		// Dependancy on the Data Feed Plugin
 
 			return json_decode( str_replace('&quot;', '"', $data) );
+			*/
 
-			//return $this->get_data_feed_response( $data_feed_id );
 
 		}
 
@@ -63,17 +68,19 @@
 			return false;
 		}
 
-		function get_data_feed_response( $data_feed_id, $api_key = false ){
+		function get_data_feed_response( $atts, $api_key = false ){
+
+			$data_feed_id = $atts['rsr-id'];
+
+			$url = $this->get_data_feed_url( $data_feed_id );
+			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
 
 			$json_key = 'df'.$data_feed_id;
 			$_json_expiration = 60 * 5; // 5 minutes
-			$key = $json_key . md5($json_key );
+			$key = $json_key . md5( $url );
 
 			$data = array();
-			
 			if ( ! ( $data = get_transient($key) ) ) {
-
-				$url = $this->get_data_feed_url( $data_feed_id );
 
 				$args = array( 'headers' => array() );
 

@@ -56,9 +56,6 @@
 					break;
 
 				case 'rsr':
-					$data = $this->rsr_query( $instance, 'update' );		/* RSR Updates Card */
-					break;
-
 				case 'project':
 					$data = $this->rsr_query( $instance, 'update' );		/* RSR Updates Card */
 					break;
@@ -71,6 +68,30 @@
 			return $data;
 		}
 		/* GET DATA BASED ON TYPE OF DATA TO BE PULLED */
+
+		/* GET COUNT BASED ON TYPE OF DATA TO BE PULLED */
+		function get_count_based_on_type( $instance ){
+			$total_items = 0;
+
+			global $akvo_rsr;
+
+			switch($instance['type']){
+
+				case 'rsr-project':
+				case 'project':
+				case 'rsr':
+					$jsondata = $akvo_rsr->get_json_data( $instance );		// GET JSON DATA FROM DATA FEED
+					if( isset( $jsondata->count ) ){
+						$total_items = $jsondata->count;
+					}
+					break;
+
+				default:
+					$data = $this->wp_query($instance);
+
+			}
+			return $total_items;
+		}
 
 		/* GET AJAX URL */
 		function get_ajax_url($action, $atts, $dont_inc = array()){
@@ -93,8 +114,7 @@
 			global $akvo_rsr;
 
 			$data = array();
-			$jsondata = $akvo_rsr->get_json_data( $atts['rsr-id'] );														// GET JSON DATA FROM DATA FEED
-
+			$jsondata = $akvo_rsr->get_json_data( $atts );														// GET JSON DATA FROM DATA FEED
 
 			if( !isset( $jsondata->results ) ){
 				/* SINGULAR DATA */
@@ -104,8 +124,9 @@
 				array_push($data, $temp);																					// ADD TO FINAL DATA
 			}
 			else{
+
 				/* MULTIPLE VALUES */
-				$offset = self::get_offset( $atts );																		// GET OFFSET
+				$offset = 0; 											// self::get_offset( $atts );	 // GET OFFSET
 
 				for($i = $offset; $i < $offset+$atts['posts_per_page']; $i++){
 
@@ -277,6 +298,24 @@
 				$content = truncate( $content, $limit );
 			}
 			return $content;
+		}
+
+		function pagination( $total, $items_per_page, $current_page ){
+
+			$num_pages = ceil( $total / $items_per_page );
+
+			include( "templates/pagination.php" );
+		}
+
+		function page_num( $num, $current_page = 1 ){
+			$link = "?card-page=".$num;
+
+			if( $current_page == $num ){
+				echo '<span aria-current="page" class="page-numbers current">' . $num . '</span>';
+			}
+			else{
+				echo '<a class="page-numbers" href="' . $link . '">' . $num . '</a>';
+			}
 		}
 
 	}

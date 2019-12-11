@@ -14,7 +14,7 @@
   		'lib/akvo-cards/main.php',        	// Cards
   		'lib/akvo-carousel/main.php',     	// Carousel
   		'lib/akvo-filters/main.php',      	// Filters for post types
-		'lib/policy.php',					// privacy policy
+			'lib/policy.php',										// privacy policy
 		'lib/akvo-fb/akvo-fb.php'			// Import facebook posts to CPT
 	];
 
