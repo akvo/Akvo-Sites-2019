@@ -11,7 +11,7 @@ body {
 
 nav, .box-wrap, .filters { font-size: 14px; }
 h1,h2,h3,h4,h5,h6 { font-weight: 700; }
-img { max-width: 100%; }
+img { max-width: 100%; height: auto;}
 blockquote { border-color: $grijs; }
 
 .btn-primary, input[type=submit] {
@@ -54,7 +54,7 @@ nav.navigation.pagination{
 
 	.page-numbers.prev, .page-numbers.next{
 		text-decoration: underline;
-		padding: 7px 0; 
+		padding: 7px 0;
 	}
 
 }
