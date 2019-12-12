@@ -76,7 +76,7 @@
 			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
 
 			$json_key = 'df'.$data_feed_id;
-			$_json_expiration = 60 * 5; // 5 minutes
+			$_json_expiration = 60 * 1; // 5 minutes
 			$key = $json_key . md5( $url );
 
 			print_r($key);
@@ -98,6 +98,10 @@
 
 				if( ! is_wp_error( $request ) ) {
 					$body = wp_remote_retrieve_body( $request );
+
+					echo "<br>";
+					print_r($body);
+					echo "<br>";
 
 					// MORE OF YOUR CODE HERE
 					$data = json_decode( $body );
