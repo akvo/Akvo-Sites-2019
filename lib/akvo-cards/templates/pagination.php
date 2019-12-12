@@ -2,7 +2,7 @@
 	<h2 class="screen-reader-text">Posts navigation</h2>
 	<div class="nav-links">
 
-    
+
 
     <?php if( $current_page != 1 ):?>
     <a class="next page-numbers" href="?<?php _e( 'card-page=' . ($current_page - 1) );?>">Previous</a>
@@ -17,7 +17,7 @@
           }
           elseif ( $i == $current_page ) {
 
-            if( $i+1 >= $num_pages  ){
+            if( $i-1 > 1  ){
                 $this->page_num( $i-1, $current_page );
             }
             $this->page_num( $i, $current_page );
