@@ -131,9 +131,11 @@
 				for($i = $offset; $i < $offset+$atts['posts_per_page']; $i++){
 
 					$temp = $akvo_rsr->parse_rsr( $jsondata->results[$i], $akvo_card_options, $akvo_date_format, $type ); 	// PARSE JSON
-					$temp = self::add_extra_params($temp, $atts);															// adding extra params
 
-					array_push($data, $temp);																				// ADD TO FINAL DATA
+					if( isset( $temp['title'] ) ){
+						$temp = self::add_extra_params($temp, $atts);										// adding extra params
+						array_push($data, $temp);																				// ADD TO FINAL DATA
+					}
 				}
 			}
 

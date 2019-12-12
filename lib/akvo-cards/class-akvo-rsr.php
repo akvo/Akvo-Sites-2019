@@ -76,7 +76,7 @@
 			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
 
 			$json_key = 'df'.$data_feed_id;
-			$_json_expiration = 60 * 1; // 5 minutes
+			$_json_expiration = 60 * 10; // 10 minutes
 			$key = $json_key . md5( $url );
 
 			$data = array();
