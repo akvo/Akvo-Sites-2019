@@ -321,7 +321,7 @@
 				echo '<span aria-current="page" class="page-numbers current">' . $num . '</span>';
 			}
 			else{
-				echo '<a class="page-numbers" href="' . $link . '">' . $num . '</a>';
+				echo '<a class="page-numbers" data-page="' . $num . '" href="' . $link . '">' . $num . '</a>';
 			}
 		}
 
