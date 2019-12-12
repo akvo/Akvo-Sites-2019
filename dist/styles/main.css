@@ -9230,6 +9230,7 @@ article .intro, .article .intro {
   overflow: hidden;
   border: #eee solid 1px;
   position: relative;
+  background: #fff;
 }
 .card a[href] {
   text-decoration: none;
