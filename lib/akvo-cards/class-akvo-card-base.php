@@ -116,6 +116,8 @@
 			$data = array();
 			$jsondata = $akvo_rsr->get_json_data( $atts );														// GET JSON DATA FROM DATA FEED
 
+			print_r($jsondata);
+
 			if( !isset( $jsondata->results ) ){
 				/* SINGULAR DATA */
 				$temp = $akvo_rsr->parse_rsr( $jsondata, $akvo_card_options, $akvo_date_format, $type );					// PARSE JSON
@@ -136,6 +138,9 @@
 					array_push($data, $temp);																				// ADD TO FINAL DATA
 				}
 			}
+
+			print_r($data);
+
 			return $data;
 		}
 
