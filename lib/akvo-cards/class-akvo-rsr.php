@@ -81,7 +81,7 @@
 
 			print_r($key);
 			echo "<br>";
-			print_r($url);
+
 
 			$data = array();
 			if ( ! ( $data = get_transient($key) ) ) {
@@ -93,6 +93,8 @@
 						'Authorization' => 'Token ' . $api_key,
 					);
 				}
+
+				print_r($url);
 
 				$request = wp_remote_get( $url, $args );
 
@@ -108,6 +110,10 @@
 
 					// IF IT IS NEW, SET THE TRANSIENT FOR NEXT TIME
 					set_transient($key, $data, $_json_expiration);
+				}
+				else{
+					// DISPLAYING THE ERROR
+					print_r($request);
 				}
 
 			}
