@@ -77,11 +77,7 @@
 
 			$json_key = 'df'.$data_feed_id;
 			$_json_expiration = 60 * 1; // 5 minutes
-			$key = md5( $url ); //$json_key . md5( $url );
-
-			print_r($key);
-			echo "<br>";
-
+			$key = $json_key . md5( $url );
 
 			$data = array();
 			if ( ! ( $data = get_transient($key) ) ) {
@@ -94,16 +90,10 @@
 					);
 				}
 
-				print_r($url);
-
 				$request = wp_remote_get( $url, $args );
 
 				if( ! is_wp_error( $request ) ) {
 					$body = wp_remote_retrieve_body( $request );
-
-					echo "<br>";
-					print_r($body);
-					echo "<br>";
 
 					// MORE OF YOUR CODE HERE
 					$data = json_decode( $body );
@@ -117,8 +107,6 @@
 				}
 
 			}
-
-			print_r($data);
 
 			return $data;
 
