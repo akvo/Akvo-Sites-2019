@@ -79,7 +79,9 @@
 			$_json_expiration = 60 * 5; // 5 minutes
 			$key = $json_key . md5( $url );
 
-			
+			print_r($key);
+			echo "<br>";
+			print_r($url);
 
 			$data = array();
 			if ( ! ( $data = get_transient($key) ) ) {
