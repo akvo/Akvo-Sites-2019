@@ -77,7 +77,7 @@
 
 			$json_key = 'df'.$data_feed_id;
 			$_json_expiration = 60 * 1; // 5 minutes
-			$key = $json_key . md5( $url );
+			$key = md5( $url ); //$json_key . md5( $url );
 
 			print_r($key);
 			echo "<br>";
