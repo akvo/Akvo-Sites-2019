@@ -1,10 +1,7 @@
 <nav class="navigation pagination" role="navigation" aria-label="Posts">
 	<h2 class="screen-reader-text">Posts navigation</h2>
 	<div class="nav-links">
-
-
-
-    <?php if( $current_page != 1 ):?>
+		<?php if( $current_page != 1 ):?>
     <a class="next page-numbers" href="?<?php _e( 'card-page=' . ($current_page - 1) );?>">Previous</a>
     <?php endif; ?>
     <?php

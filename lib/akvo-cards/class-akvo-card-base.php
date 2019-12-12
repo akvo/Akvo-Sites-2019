@@ -307,7 +307,11 @@
 
 			$num_pages = ceil( $total / $items_per_page );
 
-			include( "templates/pagination.php" );
+			if( $num_pages > 1 ){
+				include( "templates/pagination.php" );
+			}
+
+
 		}
 
 		function page_num( $num, $current_page = 1 ){
