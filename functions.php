@@ -270,7 +270,7 @@
 
 		global $post;
 
-		$post_type = get_post_type( $post );		
+		$post_type = get_post_type( $post );
 
 		/* UPDATE STICKY OPTION TO OFF THAT DOES NOT HAVE THE POST META YET - what's the significance? */
 		if( 'blog' == $post->post_type ){
@@ -320,3 +320,9 @@
 
 		return $shortcode;
 	}
+
+
+	add_filter( 'admin_post_thumbnail_html', function( $html ){
+		$html .= '<p>Recommended dimension, 1100x700.</p>';
+		return $html;
+	});
