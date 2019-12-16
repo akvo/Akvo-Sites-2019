@@ -9288,6 +9288,20 @@ article .intro, .article .intro {
     height: auto;
   }
 }
+.orbit-search-container.default-theme {
+  display: block;
+}
+@media (min-width: 768px) {
+  .orbit-search-container.default-theme .orbit-search-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+}
+.orbit-search-container.default-theme .orbit-search-results .orbit-results-header {
+  display: none;
+}
+
 .list-widget {
   width: 100%;
   border: #ccc solid 1px;

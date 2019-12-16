@@ -263,5 +263,60 @@
 
 
 	function theme_settings_page(){
-    include(plugin_dir_path(__FILE__).'theme-settings/theme-settings.php');
-}
+    include( plugin_dir_path(__FILE__).'theme-settings/theme-settings.php' );
+	}
+
+	function covert_post_to_akvo_card_shortcode(){
+
+		global $post;
+
+		$post_type = get_post_type( $post );		
+
+		/* UPDATE STICKY OPTION TO OFF THAT DOES NOT HAVE THE POST META YET - what's the significance? */
+		if( 'blog' == $post->post_type ){
+			$sticky = get_post_meta( $post->ID, '_post_extra_boxes_checkbox', true ); 							// GET STICKY CUSTOM FIELD
+			if( !$sticky ){ update_post_meta( $post->ID, '_post_extra_boxes_checkbox', 'off' ); }
+		}
+
+
+		/**
+		* WHILE ITERATING THROUGH EACH POST, CREATE THE [AKVO _CARD] SHORTCODE TO DISPLAYS THE POST IN THE CARD FORMAT
+		* SHORTCODE START
+		*/
+		if( $template == 'list' ){ $shortcode = '[akvo-list '; }
+		else{ $shortcode = '[akvo-card '; }
+
+		//$img = akvo_featured_img( $post_id );
+		if( $img = akvo_featured_img( $post->ID ) ){ $shortcode .= 'img="'.$img.'" '; } 	// FEATURED IMAGE OF THE POST
+
+		$title = get_the_title();
+		$shortcode .= 'title="'.$title.'" ';					// POST TITLE
+		$shortcode .= 'date="'.get_the_date().'" ';						// POST DATE
+
+		// #477 - removing html tags and shortcodes from the excerpt
+		$excerpt = '';
+		if( $post->post_excerpt ){ $excerpt = $post->post_excerpt; }
+		else{
+			$text = get_the_content();
+			$text = strip_shortcodes( $text );
+			$text = excerpt_remove_blocks( $text );
+			$text = apply_filters( 'the_content', $text );
+			$text = str_replace( ']]>', ']]&gt;', $text );
+			$text = str_replace( ']', '', $text );
+			$text = str_replace( '[', '', $text );
+			$excerpt = wp_trim_words( $text, 270, '' );
+		}
+
+		//echo $excerpt;
+
+		$shortcode .= 'content="'.$excerpt.'" ';			// POST EXCERPT
+		$shortcode .= 'link="'.get_the_permalink().'" ';			// POST PERMALINK
+
+		/* UPDATE TYPES PARAMETER IN SHORTCODE */
+		if( $template == 'list' && $post_type == 'media' ){ $shortcode .= 'type="'.$akvo_list->get_media_term_types( $post_id ).'"'; }
+		else{ $shortcode .= 'type="'.$post_type.'"'; }
+
+		$shortcode .= "]"; 																		// SHORTCODE END
+
+		return $shortcode;
+	}

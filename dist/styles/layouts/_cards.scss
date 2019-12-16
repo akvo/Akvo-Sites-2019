@@ -94,3 +94,22 @@
 		height: auto;
 	}
 }
+
+
+.orbit-search-container.default-theme{
+	display: block;
+
+	@media(min-width: 768px){
+		.orbit-search-form form{
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-gap: 20px;
+		}
+	}
+
+	.orbit-search-results .orbit-results-header{
+		display: none;
+	}
+
+
+}
