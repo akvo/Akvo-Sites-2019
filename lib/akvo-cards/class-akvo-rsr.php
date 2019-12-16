@@ -163,10 +163,10 @@
 
 			/* RSR OBJECT CONTENT */
 			if( $type == 'project' && isset( $rsr_obj->project_plan_summary ) ){
-				$data['content'] = truncate( $rsr_obj->project_plan_summary, 130 );				/* rsr project summary */
+				$data['content'] = truncate( $rsr_obj->project_plan_summary, 270 );				/* rsr project summary */
 			}
 			elseif( $type == 'update' && isset( $rsr_obj->text ) ){
-				$data['content'] = truncate( $rsr_obj->text, 130 );								/* rsr updates text */
+				$data['content'] = truncate( $rsr_obj->text, 270 );								/* rsr updates text */
 			}
 			/* RSR OBJECT CONTENT */
 
