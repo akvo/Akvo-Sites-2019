@@ -235,9 +235,10 @@
 			$data = array();
 
 			$query_atts = array(
-				'post_type' 		=> $atts['type'],
-        		'posts_per_page' 	=> $atts['posts_per_page'],
-        		'offset'			=> self::get_offset( $atts ),
+				'post_type' 			=> $atts['type'],
+				'post_status'			=> 'publish',
+        'posts_per_page' 	=> $atts['posts_per_page'],
+        'offset'					=> self::get_offset( $atts ),
 			);
 
 			/* TAXONOMY QUERY - CUSTOM TYPES AND TERMS */

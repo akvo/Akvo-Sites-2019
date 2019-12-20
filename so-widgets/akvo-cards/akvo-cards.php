@@ -3,13 +3,13 @@
 	Widget Name: Akvo Cards
 	Description: Akvo Cards Multiple Widget to pull RSR updates, projects or WP Post Types
 	Author: Samuel Thomas, Akvo
-	Author URI: 
-	Widget URI: 
-	Video URI: 
+	Author URI:
+	Widget URI:
+	Video URI:
 */
 
 class Akvo_Cards_Widget extends SiteOrigin_Widget {
-	
+
 	function __construct() {
 		//Here you can do any preparation required before calling the parent constructor, such as including additional files or initializing variables.
 
@@ -38,8 +38,10 @@ class Akvo_Cards_Widget extends SiteOrigin_Widget {
 					'label' 	=> __( 'Choose Template', 'siteorigin-widgets' ),
 					'default' 	=> 'news',
 					'options' 	=> array(
-						'card'	=> 'Card',
-						'list'	=> 'List'
+						'card'					=> 'Card',
+						'card-featured'	=> 'Card With Featured',
+						'list'					=> 'List'
+
 					)
 				),
 				'type' => array(
@@ -111,38 +113,38 @@ class Akvo_Cards_Widget extends SiteOrigin_Widget {
 			get_template_directory()."/so-widgets/akvo-cards"
 		);
 	}
-	
+
 	function get_taxonomies(){
-		
+
 		global $akvo_cards;
-		
+
 		$tax_arr = array('none' => 'None');
-		
+
 		$taxonomies = $akvo_cards->get_taxonomies();
-			
+
 		foreach( $taxonomies as $slug => $tax ){
 			$tax_arr[ $slug ] = $slug;
 		}
-		
+
 		return $tax_arr;
-		
+
 	}
-	
+
 	function get_types(){
 		global $akvo_cards;
 		return $akvo_cards->get_types();
 	}
-	
+
 	function get_data_feeds(){
 		global $akvo_cards;
-		
+
 		$data_feeds = $akvo_cards->get_data_feeds();
-		
+
 		$data_feeds['none'] = 'Select None';
-		
+
 		return $data_feeds;
 	}
-	
+
 	function get_template_name($instance) {
 		return 'template';
 	}

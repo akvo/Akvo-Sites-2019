@@ -9309,7 +9309,7 @@ article .intro, .article .intro {
     border: none;
   }
   .row-col1 .card .card-date {
-    display: none;
+    left: calc(48% + 30px);
   }
 
   .row-col1 .card-link-parent {
@@ -9326,6 +9326,7 @@ article .intro, .article .intro {
   }
   .row-col1 .card-link-parent .card-content {
     margin-left: 15px;
+    padding: 20px 0;
   }
 }
 .list-widget {

@@ -1,4 +1,26 @@
 <section>
+	<?php
+
+		if( $atts['template'] == 'card-featured' && count( $data ) ){
+
+			echo '<div class="row-col1" style="margin-bottom:30px;"><div class="col">';
+
+			$shortcode = '[akvo-card';
+
+			foreach($data[0] as $key=>$val){	/* ADD ATTRIBUTES TO THE SHORTCODE */
+				$shortcode .= ' '.$key.'="'.$val.'"';
+			}
+
+			$shortcode .= ']';					// end shortcode
+
+			echo do_shortcode($shortcode);		// print shortcode
+
+			echo '</div></div>';
+
+			unset( $data[0] );
+		}
+
+	?>
 	<div id="cards-list" data-target="<?php if( $atts['template'] == 'list' ){_e('.col-md-12');}else{_e('.col');}?>.eq" class="row-col3 cards-list" data-url="<?php _e($url);?>" data-paged="akvo-paged">
 		<?php foreach($data as $item):?>
 		<div class="<?php if( $atts['template'] == 'list' ){_e('col-md-12');}else{_e('col');}?> eq">
