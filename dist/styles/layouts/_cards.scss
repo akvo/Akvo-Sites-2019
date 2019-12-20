@@ -1,16 +1,15 @@
-.row-col3{
-
+.row-col1, .row-col3{
 	display: flex;
 	flex-wrap: wrap;
 
 	.col{
 		display: flex;
-
 		width: 100%;
 		padding: 0.75em 0.5em;
-
 	}
+}
 
+.row-col3{
 	@media ( min-width: 60em ){
 		.col{
 			width: 33%;
@@ -24,7 +23,6 @@
 			padding-left: 1em;
 		}
 	}
-
 }
 
 .card{
@@ -112,4 +110,31 @@
 	}
 
 
+}
+
+/* STYLES FOR FEATURED CARD */
+@media ( min-width: 60em ){
+	.row-col1 .card{
+		border: none;
+		.card-date{
+			display: none;
+		}
+	}
+	.row-col1 .card-link-parent{
+		display: flex;
+		flex-wrap: wrap;
+
+		.card-image, .card-content{
+			display: block;
+			width: 48%;
+		}
+		.card-image{
+			margin-right: 15px;
+			height: 300px;
+		}
+		.card-content{
+			margin-left: 15px;
+		}
+
+	}
 }

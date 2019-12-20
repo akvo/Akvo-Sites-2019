@@ -9201,15 +9201,16 @@ article .intro, .article .intro {
     text-transform: capitalize;
   }
 }
-.row-col3 {
+.row-col1, .row-col3 {
   display: flex;
   flex-wrap: wrap;
 }
-.row-col3 .col {
+.row-col1 .col, .row-col3 .col {
   display: flex;
   width: 100%;
   padding: 0.75em 0.5em;
 }
+
 @media (min-width: 60em) {
   .row-col3 .col {
     width: 33%;
@@ -9302,6 +9303,31 @@ article .intro, .article .intro {
   display: none;
 }
 
+/* STYLES FOR FEATURED CARD */
+@media (min-width: 60em) {
+  .row-col1 .card {
+    border: none;
+  }
+  .row-col1 .card .card-date {
+    display: none;
+  }
+
+  .row-col1 .card-link-parent {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .row-col1 .card-link-parent .card-image, .row-col1 .card-link-parent .card-content {
+    display: block;
+    width: 48%;
+  }
+  .row-col1 .card-link-parent .card-image {
+    margin-right: 15px;
+    height: 300px;
+  }
+  .row-col1 .card-link-parent .card-content {
+    margin-left: 15px;
+  }
+}
 .list-widget {
   width: 100%;
   border: #ccc solid 1px;
