@@ -6,7 +6,7 @@
   border-bottom: #eee solid 1px;
 }
 
-.panel-group .panel .panel-heading{ background: transparent; }
+.panel-group .panel .panel-heading{ background: transparent; padding: 15px; }
 
 .panel-group .panel .panel-heading a[href]{
   display: block;
