@@ -321,6 +321,9 @@
 		return $shortcode;
 	}
 
+	function get_unique_id( $atts ){
+	  return substr( md5( json_encode( $atts ) ), 0, 8 );
+	}
 
 	add_filter( 'admin_post_thumbnail_html', function( $html ){
 		$html .= '<p>Recommended dimension, 1100x700.</p>';
