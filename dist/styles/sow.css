@@ -15,6 +15,7 @@
 
 .panel-group .panel .panel-heading a[href] .open-icon{ display: none; }
 .panel-group .panel .panel-heading a[href] .closed-icon{ display: inline-block; }
+
 .panel-group .panel .panel-heading a[href].collapsed .open-icon{ display: inline-block; }
 .panel-group .panel .panel-heading a[href].collapsed .closed-icon{ display: none; }
 
