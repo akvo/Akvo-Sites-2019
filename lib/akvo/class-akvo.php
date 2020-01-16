@@ -233,6 +233,8 @@
 			/* AKVO SITES STYLESHEET */
 			wp_enqueue_style( 'sage_css', get_template_directory_uri().'/dist/styles/main.css', false, time() );
 
+			wp_enqueue_style( 'sow_css', get_template_directory_uri().'/dist/styles/sow.css', false, time() );
+
 			/* COMMENTS REPLY JS */
 			if (is_single() && comments_open() && get_option('thread_comments')) { wp_enqueue_script('comment-reply'); }
 
