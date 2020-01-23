@@ -1,10 +1,11 @@
 <?php
 
 $screens = array(
-	'sample-one' => array(
-		'label' => 'Sample One',
-		'tab' => plugin_dir_path(__FILE__) . 'pages/sample-one.php',
+	'cpt' => array(
+		'label' => 'Custom Post Types',
+		'tab' => plugin_dir_path(__FILE__) . 'pages/cpt.php',
 	),
+	/*
 	'sample-two' => array(
 		'label' => 'Sample two',
 		'tab' => plugin_dir_path(__FILE__) . 'pages/sample-two.php',
@@ -15,6 +16,7 @@ $screens = array(
 		'tab' => plugin_dir_path(__FILE__) . 'pages/sample-three.php',
 		'action' => 'sample-three',
 	),
+	*/
 );
 
 $active_tab = '';

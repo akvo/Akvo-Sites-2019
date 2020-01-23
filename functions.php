@@ -1,21 +1,22 @@
 <?php
 
 	$sage_includes = [
-  		'lib/akvo/main.php',				// Akvo Class
-  		'lib/conditional-tag-check.php', 	// ConditionalTagCheck class
-  		'lib/config.php',                	// Configuration
-  		'lib/extras.php',                	// Custom functions
-  		'lib/custom-widgets.php',        	// Custom widgets G!
+  		'lib/akvo/main.php',								// Akvo Class
+  		'lib/conditional-tag-check.php', 		// ConditionalTagCheck class
+  		'lib/config.php',                		// Configuration
+  		'lib/extras.php',                		// Custom functions
+  		'lib/custom-widgets.php',        		// Custom widgets G!
   		'lib/bootstrap-nav-walker.php',    	// BS Nav walker
-  		'plugins/boxes.php',        		// Custom input fields
-  		'plugins/related.php',        		// Related posts
-  		'lib/color.php',					// COLOR
-  		'lib/customize-theme/main.php',		// Library of theme customisation
+  		'plugins/boxes.php',        				// Custom input fields
+  		'plugins/related.php',        			// Related posts
+  		'lib/color.php',										// COLOR
+  		'lib/customize-theme/main.php',			// Library of theme customisation
   		'lib/akvo-cards/main.php',        	// Cards
   		'lib/akvo-carousel/main.php',     	// Carousel
   		'lib/akvo-filters/main.php',      	// Filters for post types
 			'lib/policy.php',										// privacy policy
-		'lib/akvo-fb/akvo-fb.php'			// Import facebook posts to CPT
+			'lib/theme-settings/main.php',			// THEME SETTINGS
+			'lib/akvo-fb/akvo-fb.php'						// Import facebook posts to CPT
 	];
 
 	foreach ($sage_includes as $file) {
@@ -235,36 +236,7 @@
 
 	});
 
-	add_action( 'network_admin_menu', function(){
-		add_menu_page(
-        "Export Customize",
-        "Export Customize",
-        'manage_options',
-        'export_customize',
-        'network_menu_item'
-    	);
-	} );
 
-	function network_menu_item(){
-		echo "hi";
-	}
-
-	//Theme Settings Menu Page
-	add_action('admin_menu', function(){
-    add_menu_page(
-			'Theme Settings',
-			'Theme Settings',
-			'manage_options',
-			'theme_settings',
-			'theme_settings_page',
-			'dashicons-buddicons-topics'
-		);
-	}	);
-
-
-	function theme_settings_page(){
-    include( plugin_dir_path(__FILE__).'theme-settings/theme-settings.php' );
-	}
 
 	function akvo_get_excerpt( $limit = 270 ){
 		// #477 - removing html tags and shortcodes from the excerpt

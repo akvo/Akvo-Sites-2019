@@ -196,22 +196,22 @@
 			add_theme_support('title-tag');
 
 			/* Register wp_nav_menu() menus. http://codex.wordpress.org/Function_Reference/register_nav_menus */
-  			register_nav_menus(['primary_navigation' => __('Primary Navigation', $this->text_domain)]);
+  		register_nav_menus(['primary_navigation' => __('Primary Navigation', $this->text_domain)]);
 
 			/* Add post thumbnails */
 			add_theme_support('post-thumbnails');
 
 			/* Add post formats */
-  			add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
+  		add_theme_support('post-formats', ['aside', 'gallery', 'link', 'image', 'quote', 'video', 'audio']);
 
 			/* Add HTML5 markup for captions */
 			add_theme_support('html5', ['caption', 'comment-form', 'comment-list']);
 
 			/* CUSTOM IMAGE SIZES */
 			add_image_size( 'thumb-small', 224, 126, true ); // Hard crop to exact dimensions (crops sides or top and bottom)
-    		add_image_size( 'thumb-medium', 320, 180, true );
-    		add_image_size( 'thumb-large', 640, 360, true );
-    		add_image_size( 'thumb-xlarge', 960, 540, true );
+    	add_image_size( 'thumb-medium', 320, 180, true );
+    	add_image_size( 'thumb-large', 640, 360, true );
+    	add_image_size( 'thumb-xlarge', 960, 540, true );
 		}
 
 
@@ -222,8 +222,12 @@
 				$this->register_taxonomy( $slug, $tax['plural_name'], $tax['singular_name'], $tax['post_type'] );
 			}
 
+			$settings = $this->get_settings();
+
 			foreach( $this->custom_post_types as $slug => $post_type ){
-				$this->register_post_type( $slug, $post_type['plural_name'], $post_type['singular_name'], $post_type['icon'] );
+				if( in_array( $slug, $settings['cpt'] ) ){
+					$this->register_post_type( $slug, $post_type['plural_name'], $post_type['singular_name'], $post_type['icon'] );
+				}
 			}
 
 		}
@@ -388,6 +392,17 @@
 			) );
 
 			wp_nav_menu( $args );
+		}
+
+		// CPT ENABLE/DISABLE
+		function get_settings(){
+			$settings = get_option( 'akvo_2019_settings' );
+		  if( !$settings ){ $settings = array( 'cpt' => array() ); }
+			return $settings;
+		}
+
+		function update_settings( $settings ){
+			update_option( 'akvo_2019_settings', $settings );
 		}
 
 	}
