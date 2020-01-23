@@ -266,6 +266,24 @@
     include( plugin_dir_path(__FILE__).'theme-settings/theme-settings.php' );
 	}
 
+	function akvo_get_excerpt( $limit = 270 ){
+		// #477 - removing html tags and shortcodes from the excerpt
+		global $post;
+		$excerpt = '';
+		if( $post->post_excerpt ){ $excerpt = $post->post_excerpt; }
+		else{
+			$text = get_the_content();
+			$text = strip_shortcodes( $text );
+			$text = excerpt_remove_blocks( $text );
+			$text = apply_filters( 'the_content', $text );
+			$text = str_replace( ']]>', ']]&gt;', $text );
+			$text = str_replace( ']', '', $text );
+			$text = str_replace( '[', '', $text );
+			$excerpt = wp_trim_words( $text, $limit, '' );
+		}
+		return $excerpt;
+	}
+
 	function covert_post_to_akvo_card_shortcode(){
 
 		global $post;
@@ -293,19 +311,7 @@
 		$shortcode .= 'title="'.$title.'" ';					// POST TITLE
 		$shortcode .= 'date="'.get_the_date().'" ';						// POST DATE
 
-		// #477 - removing html tags and shortcodes from the excerpt
-		$excerpt = '';
-		if( $post->post_excerpt ){ $excerpt = $post->post_excerpt; }
-		else{
-			$text = get_the_content();
-			$text = strip_shortcodes( $text );
-			$text = excerpt_remove_blocks( $text );
-			$text = apply_filters( 'the_content', $text );
-			$text = str_replace( ']]>', ']]&gt;', $text );
-			$text = str_replace( ']', '', $text );
-			$text = str_replace( '[', '', $text );
-			$excerpt = wp_trim_words( $text, 270, '' );
-		}
+		$excerpt = akvo_get_excerpt();
 
 		//echo $excerpt;
 
