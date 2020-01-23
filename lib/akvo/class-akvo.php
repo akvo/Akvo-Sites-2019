@@ -132,11 +132,14 @@
 					'singular_name'	=> 'Map',
 					'icon'			=> 'dashicons-location-alt'
 				),
+				/*
+				// NO LONGER NEEDED IN THE NEW THEME AS THE CAROUSEL COMES FROM THE WIDGET OF THE PAGE BUILDER
 				'carousel' => array(
 					'plural_name' 	=> 'Carousel',
 					'singular_name'	=> 'Carousel Slide',
 					'icon'			=> 'dashicons-images-alt'
 				),
+				*/
 				'flow' => array(
 					'plural_name' 	=> 'Akvo Flow',
 					'singular_name'	=> 'Flow item',
