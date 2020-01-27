@@ -15,7 +15,9 @@
 
   echo "<form method='POST'>";
 
-  foreach( $akvo->custom_post_types as $slug => $post_type ){
+  $custom_post_types = apply_filters( 'akvo-settings-cpt-options', $akvo->custom_post_types );
+
+  foreach( $custom_post_types as $slug => $post_type ){
     $checked = false;
     if( in_array( $slug, $settings['cpt'] ) ){ $checked = true; }
 
