@@ -10,7 +10,7 @@
 ?>
 <div class='card <?php _e(self::slugify($atts['type']));?>'>
 	<a class='card-link-parent' href="<?php _e($atts['link']);?>">
-		<div class='card-image' <?php if($atts['img']):?>style="background-image:url('<?php _e($atts['img']);?>');"<?php endif;?>>
+		<div class='card-image <?php if($atts['img']){ _e('no-image');}?>' <?php if($atts['img']):?>style="background-image:url('<?php _e($atts['img']);?>');"<?php endif;?>>
 			<div class="card-tag"><?php if($atts['type-text']){_e($atts['type-text']);} else{_e($atts['type']);}?></div>
 		</div>
 		<div class='card-content'>
