@@ -3,7 +3,12 @@
 	/**
  	* Register the Widget
  	*/
-	add_action( 'widgets_init', create_function( '', 'register_widget("pin_post_widget");' ) );
+
+	//add_action( 'widgets_init', create_function( '', 'register_widget("pin_post_widget");' ) );
+
+	add_action( 'widgets_init', function( $args ){
+		return register_widget( "pin_post_widget" );
+	} );
 
 class pin_post_widget extends WP_Widget
 {
@@ -26,29 +31,29 @@ class pin_post_widget extends WP_Widget
      * Upload the Javascripts for the media uploader
      */
     public function upload_scripts(){
-    	
-    	
+
+
     	$upload_js = get_bloginfo('template_url') . '/dist/scripts/upload-media.js';
-    	
-    	
+
+
         wp_enqueue_script('media-upload');
         wp_enqueue_script('thickbox');
         wp_enqueue_script('upload_media_widget', $upload_js, array('jquery'));
 
         wp_enqueue_style('thickbox');
-        
-       
-    	
+
+
+
     }
 
-    
+
     public function widget( $args, $instance ){
-    	echo do_shortcode('[akvo-card title="'.$instance['title'].'" type="'.$instance['type'].'" link="'.$instance['link'].'" img="'.$instance['image'].'" content="'.$instance['content'].'" date="'.$instance['date'].'"]');	
+    	echo do_shortcode('[akvo-card title="'.$instance['title'].'" type="'.$instance['type'].'" link="'.$instance['link'].'" img="'.$instance['image'].'" content="'.$instance['content'].'" date="'.$instance['date'].'"]');
     }
 
-    
+
     public function update( $new_instance, $old_instance ) {
-		
+
 		$updated_instance = $new_instance;
         return $updated_instance;
     }
@@ -60,10 +65,10 @@ class pin_post_widget extends WP_Widget
      * @return void
      **/
     public function form( $instance ){
-    	
-    	$defaults = array( 'type' => 'news'); 
+
+    	$defaults = array( 'type' => 'news');
 		$instance = wp_parse_args( (array) $instance, $defaults );
-    	
+
     	$title = __('Untitled');
         if(isset($instance['title']))
         {
@@ -79,12 +84,12 @@ class pin_post_widget extends WP_Widget
             <label for="<?php echo $this->get_field_name( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
         </p>
-		
+
 		<p>
             <label for="<?php echo $this->get_field_name( 'date' ); ?>"><?php _e( 'Date:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'date' ); ?>" name="<?php echo $this->get_field_name( 'date' ); ?>" type="text" value="<?php echo $instance['date']; ?>" />
         </p>
-		
+
         <p>
             <label for="<?php echo $this->get_field_name( 'image' ); ?>"><?php _e( 'Image:' ); ?></label>
             <input name="<?php echo $this->get_field_name( 'image' ); ?>" id="<?php echo $this->get_field_id( 'image' ); ?>" class="widefat" type="text" size="36"  value="<?php echo esc_url( $image ); ?>" />
@@ -110,12 +115,12 @@ class pin_post_widget extends WP_Widget
         		<?php endforeach;?>
         	</select>
         </p>
-        
+
         <p>
             <label for="<?php echo $this->get_field_name( 'link' ); ?>"><?php _e( 'Link:' ); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'link' ); ?>" name="<?php echo $this->get_field_name( 'link' ); ?>" type="text" value="<?php echo $instance['link']; ?>" />
         </p>
-        
+
         <p>
             <label for="<?php echo $this->get_field_name( 'content' ); ?>"><?php _e( 'Content:' ); ?></label>
             <textarea class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>"><?php echo $instance['content']; ?></textarea>
