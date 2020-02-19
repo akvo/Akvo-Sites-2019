@@ -255,3 +255,25 @@ var $ = jQuery.noConflict();
         }
     });
 }(jQuery));
+
+
+$(function(){
+	/* AKVO RESULTS FRAMEWORK */
+	$('.progress-pie-chart').each( function(){
+
+		var $ppc = $( this ),
+			percent = parseInt( $ppc.data('percent') ),
+			deg = 360*percent/100;
+
+		console.log( percent );
+
+		if (percent > 50) { $ppc.addClass('gt-50'); }
+		$ppc.find('.ppc-progress-fill').css('transform','rotate('+ deg +'deg)');
+		$ppc.find('.ppc-percents span').html(percent+'%');
+
+	} );
+
+
+
+
+});

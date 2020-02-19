@@ -3,7 +3,63 @@
 	class AKVO_RSR{
 
 		function __construct(){
+
+			add_shortcode( 'akvo_rsr_results', array( $this, 'results' ) );
+
+
+
 			//add_shortcode( 'akvo_rsr_project_field', array( $this, 'display_project_field' ) );
+		}
+
+		function results(){
+			ob_start();
+			$atts = array(
+				'rsr-id'	=> 'results',
+				'posts_per_page'	=> 10,
+				'page'	=> 1
+			);
+			$response = $this->get_data_feed_response( $atts );
+
+			$akvo_rsr_results = AKVO_RSR_RESULTS::getInstance();
+
+			$akvo_rsr_results->html( $response->results );
+
+			/*
+			foreach ($response->results as $result) {
+				echo "<div style='border: red solid 1px; margin-bottom: 30px;padding: 15px;'>";
+				print_r( $result->title );
+				echo "<br>";
+				foreach ($result->indicators as $indicator){
+					echo "<div style='border: #000 solid 1px; margin-bottom: 30px; background: #eee;padding: 15px; '>";
+
+					$akvo_rsr_results->indicator_html( $indicator );
+
+					print_r( $indicator->title );
+					print_r( $indicator->description );
+					print_r( $indicator->baseline_year );
+					print_r( $indicator->baseline_value );
+
+					foreach ($indicator->periods as $period){
+
+
+
+						echo "<div style='border: #000 solid 1px; margin-bottom: 30px; background: #eee;padding: 15px; '>";
+
+
+
+						echo "</div>";
+					}
+
+					echo "</div>";
+				}
+				echo "</div>";
+
+			}
+			*/
+
+
+
+			return ob_get_clean();
 		}
 
 		function display_project_field( $atts ){
@@ -89,6 +145,8 @@
 						'Authorization' => 'Token ' . $api_key,
 					);
 				}
+
+				//set_time_limit(0);
 
 				$request = wp_remote_get( $url, $args );
 

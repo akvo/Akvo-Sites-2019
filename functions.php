@@ -1,6 +1,7 @@
 <?php
 
 	$sage_includes = [
+			'lib/class-akvo-base.php',					// AKVO BASE CLASS
   		'lib/akvo/main.php',								// Akvo Class
   		'lib/conditional-tag-check.php', 		// ConditionalTagCheck class
   		'lib/config.php',                		// Configuration
@@ -335,3 +336,25 @@
 	add_filter("retrieve_password_title", function($title) {
   	return "[" . wp_specialchars_decode(get_option('blogname'), ENT_QUOTES) . "] Password Reset";
 	});
+
+
+	/* INCLUDE THIS IN AKVO RSR */
+
+	add_action('http_api_curl', 'sar_custom_curl_timeout', 9999, 1);
+	function sar_custom_curl_timeout( $handle ){
+		curl_setopt( $handle, CURLOPT_CONNECTTIMEOUT, 30 ); // 30 seconds. Too much for production, only for testing.
+		curl_setopt( $handle, CURLOPT_TIMEOUT, 30 ); // 30 seconds. Too much for production, only for testing.
+	}
+
+	// Setting custom timeout for the HTTP request
+	add_filter( 'http_request_timeout', 'sar_custom_http_request_timeout', 9999 );
+	function sar_custom_http_request_timeout( $timeout_value ) {
+		return 30; // 30 seconds. Too much for production, only for testing.
+	}
+
+	// Setting custom timeout in HTTP request args
+	add_filter('http_request_args', 'sar_custom_http_request_args', 9999, 1);
+	function sar_custom_http_request_args( $r ){
+		$r['timeout'] = 30; // 30 seconds. Too much for production, only for testing.
+		return $r;
+	}

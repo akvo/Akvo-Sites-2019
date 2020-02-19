@@ -21,3 +21,97 @@
 
 .panel-group .panel .panel-heading .panel-title{ font-size: 24px;}
 .panel-group .panel .panel-body{ background: #f7f7f7; }
+
+
+/* AKVO RSR RESULTS */
+.akvo-rsr-box{
+  border: 1px solid #f2f0e6;
+  padding: 10px;
+  margin-bottom: 20px;
+  background: #fff;
+  font-size: 14px;
+}
+.rsr-result{ background: rgba(240, 240, 240, 0.5); }
+.rsr-indicator{ position: relative; padding-right: 100px; }
+.rsr-period{ border: none; border-top: 1px solid #f2f0e6;}
+.rsr-disaggregations{ border: none; }
+.rsr-dimension-item{ border: none; padding: 0 10px; margin-bottom: 0;}
+
+.akvo-rsr-box h5{
+  line-height: 1.5;
+}
+
+.progress-pie-chart {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #e5e5e5;
+  position: relative;
+}
+.progress-pie-chart.gt-50 {
+  background-color: #81ce97;
+}
+
+.ppc-progress {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  clip: rect(0, 50px, 50px, 25px);
+}
+.ppc-progress .ppc-progress-fill {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 25px);
+  top: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  clip: rect(0, 25px, 50px, 0);
+  background: #81ce97;
+  transform: rotate(60deg);
+}
+.gt-50 .ppc-progress {
+  clip: rect(0, 25px, 50px, 0);
+}
+.gt-50 .ppc-progress .ppc-progress-fill {
+  clip: rect(0, 50px, 50px, 25px);
+  background: #e5e5e5;
+}
+
+.ppc-percents {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  left: calc(50% - 43.4782608696px/2);
+  top: calc(50% - 43.4782608696px/2);
+  width: 43.4782608696px;
+  height: 43.4782608696px;
+  background: #fff;
+  text-align: center;
+  display: table;
+}
+.ppc-percents span {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #81ce97;
+}
+
+.pcc-percents-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+
+.progress-pie-chart {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* AKVO RSR RESULTS */
