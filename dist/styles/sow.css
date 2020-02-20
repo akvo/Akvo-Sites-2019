@@ -34,6 +34,8 @@
 .rsr-result{ background: rgba(240, 240, 240, 0.5); }
 .rsr-indicator{ position: relative; padding-right: 100px; }
 .rsr-period{ border: none; border-top: 1px solid #f2f0e6; margin-bottom: 0; }
+.rsr-period .list-inline li{ min-width: 120px;}
+.rsr-period-date{ width: 220px; }
 .rsr-disaggregations{ border: none; margin-bottom: 0; padding-bottom: 0; }
 .rsr-dimension-item{ border: none; padding: 0 10px; margin-bottom: 0;}
 

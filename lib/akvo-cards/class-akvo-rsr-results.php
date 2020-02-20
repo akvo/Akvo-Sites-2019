@@ -113,7 +113,7 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
     $phpenddate = strtotime( $period->period_end );
 
     echo "<ul class='list-inline'>";
-    echo "<li>" . date("jS M Y", $phpstartdate) . " - " . date("jS F Y", $phpenddate) . "</li>";
+    echo "<li class='rsr-period-date'>" . date("jS M Y", $phpstartdate) . " - " . date("jS M Y", $phpenddate) . "</li>";
     echo "<li><span class='text-muted'>TARGET:</span> ".$period->target_value."</li>";
     echo "<li><span class='text-muted'>ACTUAL:</span> ".$period->actual_value."</li>";
     echo "</ul>";
