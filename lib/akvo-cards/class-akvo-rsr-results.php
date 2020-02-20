@@ -3,20 +3,39 @@
 class AKVO_RSR_RESULTS extends AKVO_BASE{
 
   function html( $results ){
+    $i = 1;
+    echo "<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>";
     foreach ($results as $result) {
-      $this->result_html( $result );
+      $this->result_html( $result, $i );
+      $i++;
     }
+    echo "</div>";
   }
 
-  function result_html( $result ){
+  function result_html( $result, $i ){
     $tot_indicators = count( $result->indicators );
 
-    echo "<div class='akvo-rsr-box rsr-result'>";
-    echo "<h5>".$result->title." &nbsp; <span class='badge'> $tot_indicators Indicators</h5>";
+    echo "<div class='panel panel-default'>";
+
+    echo "<div class='panel-heading' role='tab' id='heading-$i'>";
+    echo "<h4 class='panel-title'>";
+    echo "<a role='button' data-toggle='collapse' data-parent='#accordion' href='#collapse-$i' aria-expanded='true' aria-controls='collapse-$i' class='collapsed'>";
+    echo $result->title." &nbsp; <span class='badge'> $tot_indicators Indicators</span>";
+    echo "<span class='open-icon pull-right'><i class='fa fa-plus'></i></span>";
+    echo "<span class='closed-icon pull-right'><i class='fa fa-minus'></i></span>";
+    echo "</a>";
+    echo "</h4>";     // .panel-title
+    echo "</div>";    // .panel-heading
+
+    echo "<div id='collapse-$i' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-$i' aria-expanded='true'>";
+    echo "<div class='panel-body'>";
     foreach ($result->indicators as $indicator){
       $this->indicator_html( $indicator );
     }
-    echo "</div>";
+    echo "</div>";    // .panel-body
+    echo "</div>";    // .collapse
+
+    echo "</div>";    // .panel
   }
 
   function indicator_html( $indicator ){
