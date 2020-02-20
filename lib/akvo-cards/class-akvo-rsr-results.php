@@ -20,9 +20,10 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
     echo "<div class='panel-heading' role='tab' id='heading-$i'>";
     echo "<h4 class='panel-title'>";
     echo "<a role='button' data-toggle='collapse' data-parent='#accordion' href='#collapse-$i' aria-expanded='true' aria-controls='collapse-$i' class='collapsed'>";
-    echo $result->title." &nbsp; <span class='badge'> $tot_indicators Indicators</span>";
+    echo $result->title;
     echo "<span class='open-icon pull-right'><i class='fa fa-plus'></i></span>";
     echo "<span class='closed-icon pull-right'><i class='fa fa-minus'></i></span>";
+    echo "<span class='badge pull-right' style='margin-right:10px;margin-top: 5px;'> $tot_indicators Indicators</span>";
     echo "</a>";
     echo "</h4>";     // .panel-title
     echo "</div>";    // .panel-heading
