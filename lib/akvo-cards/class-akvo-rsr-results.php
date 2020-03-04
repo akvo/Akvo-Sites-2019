@@ -4,7 +4,7 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
 
   function html( $results ){
     $i = 1;
-    echo "<div class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>";
+    echo "<div class='panel-group rsr-results-group' id='accordion' role='tablist' aria-multiselectable='true'>";
     foreach ($results as $result) {
       $this->result_html( $result, $i );
       $i++;
@@ -30,8 +30,10 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
 
     echo "<div id='collapse-$i' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-$i' aria-expanded='true'>";
     echo "<div class='panel-body'>";
+    $j = 1;
     foreach ($result->indicators as $indicator){
-      $this->indicator_html( $indicator );
+      $this->indicator_html( $indicator, $j );
+      $j++;
     }
     echo "</div>";    // .panel-body
     echo "</div>";    // .collapse
@@ -39,58 +41,29 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
     echo "</div>";    // .panel
   }
 
-  function indicator_html( $indicator ){
+  function indicator_html( $indicator, $j ){
 
     $tot_periods = count( $indicator->periods );
 
-    echo "<div class='akvo-rsr-box rsr-indicator'>";
-    echo "<h5>".$indicator->title."&nbsp; <span class='badge'> $tot_periods Periods</h5>";
-    echo "<p class='text-muted'>".$indicator->description."</p>";
-
-    echo "<ul class='list-inline'>";
-    echo "<li><span class='text-muted'>Baseline Year:</span> ".$indicator->baseline_year."</li>";
-    echo "<li><span class='text-muted'>Baseline Value:</span> ".$indicator->baseline_value."</li>";
-    echo "</ul>";
+    $collapse_id = "collapse-indicator" . $j;
 
     $tot_target_value = 0;
     $tot_actual_value = 0;
-    foreach ($indicator->periods as $period){
-      $tot_target_value += floatval( $period->target_value );
-      $tot_actual_value += floatval( $period->actual_value );
-      $this->period_html( $period );
-    }
 
-    $percent = 0;
+    echo "<div class='akvo-rsr-box rsr-indicator'>";
 
-    if( $tot_target_value > 0 && $tot_actual_value > 0 ){
-      $percent = ceil( ( $tot_actual_value / $tot_target_value ) * 100 );
-    }
+    include('templates/results-indicator.php');
 
-
-    if ( $percent > 100 ) { $percent = 100; }
-
-    ?>
-
-    <div class="progress-pie-chart" data-percent="<?php _e( $percent );?>">
-      <div class="ppc-progress">
-        <div class="ppc-progress-fill"></div>
-      </div>
-      <div class="ppc-percents">
-        <div class="pcc-percents-wrapper">
-          <span>%</span>
-        </div>
-      </div>
-    </div>
-
-    <?php
-
-
-    //echo "<pre>";
-    //unset( $indicator->periods );
-    //print_r( $indicator );
-    //echo "</pre>";
+    $this->progress_html( $tot_target_value, $tot_actual_value );
 
     echo "</div>";
+  }
+
+  function progress_html( $tot_target_value, $tot_actual_value ){
+    $percent = 0;
+    if( $tot_target_value > 0 && $tot_actual_value > 0 ){ $percent = ceil( ( $tot_actual_value / $tot_target_value ) * 100 ); }
+    if ( $percent > 100 ) { $percent = 100; }
+    include( 'templates/results-progress.php' );
   }
 
   /*
