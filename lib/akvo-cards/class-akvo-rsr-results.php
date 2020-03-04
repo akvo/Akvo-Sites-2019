@@ -15,30 +15,7 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
   function result_html( $result, $i ){
     $tot_indicators = count( $result->indicators );
 
-    echo "<div class='panel panel-default'>";
-
-    echo "<div class='panel-heading' role='tab' id='heading-$i'>";
-    echo "<h4 class='panel-title'>";
-    echo "<a role='button' data-toggle='collapse' data-parent='#accordion' href='#collapse-$i' aria-expanded='true' aria-controls='collapse-$i' class='collapsed'>";
-    echo $result->title;
-    echo "<span class='open-icon pull-right'><i class='fa fa-plus'></i></span>";
-    echo "<span class='closed-icon pull-right'><i class='fa fa-minus'></i></span>";
-    echo "<span class='badge pull-right' style='margin-right:10px;margin-top: 5px;'> $tot_indicators Indicators</span>";
-    echo "</a>";
-    echo "</h4>";     // .panel-title
-    echo "</div>";    // .panel-heading
-
-    echo "<div id='collapse-$i' class='panel-collapse collapse' role='tabpanel' aria-labelledby='heading-$i' aria-expanded='true'>";
-    echo "<div class='panel-body'>";
-    $j = 1;
-    foreach ($result->indicators as $indicator){
-      $this->indicator_html( $indicator, $j );
-      $j++;
-    }
-    echo "</div>";    // .panel-body
-    echo "</div>";    // .collapse
-
-    echo "</div>";    // .panel
+    include( 'templates/results-result.php' );
   }
 
   function indicator_html( $indicator, $j ){

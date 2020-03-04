@@ -118,5 +118,9 @@
   font-size: 18px;
   font-weight: normal;
 }
+.indicator-title{
+  width: calc( 100% - 120px );
+  display: inline-block;
+}
 
 /* AKVO RSR RESULTS */
