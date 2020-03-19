@@ -38,6 +38,8 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
 
   function full_report( $response ){
 
+    $akvo_ui = AKVO_UI::getInstance();
+
     _e( "<div class='akvo-rsr-full-report'>" );
     _e( "<h4 class='akvo-status-title'>Activity dates and status</h4>" );
     $status_items = array(
@@ -45,15 +47,22 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
       'date_start_planned'  => 'Planned start date',
       'date_end_planned'    => 'Planned end date',
       'date_start_actual'   => 'Actual start date',
-      'date_end_actual'     => 'Actual end date'
+      'date_end_actual'     => 'Actual end date',
+      'budget'              => 'Total Budget',
+      'funds'               => 'Total Funds',
+      'funds_needed'        => 'Funds Needed'
     );
-    _e( "<ul class='list-unstyled akvo-status-list'>" );
+    _e( "<div class='akvo-status-list'>" );
     foreach ( $status_items as $slug => $title ) {
       if( isset( $response->$slug ) ){
-        _e( "<li><b>$title</b> ".$response->$slug."</li>" );
+        $value = $response->$slug;
+        if( in_array( $slug, array( 'budget', 'funds', 'funds_needed' ) ) ){
+          $value = number_format( $response->$slug ) . ' ' . $response->currency;
+        }
+        $akvo_ui->status_item( $title, $value );
       }
     }
-    _e( "</ul>" );
+    _e( "</div>" );
 
     $items = array(
       'project_plan'          => 'Project Plan',

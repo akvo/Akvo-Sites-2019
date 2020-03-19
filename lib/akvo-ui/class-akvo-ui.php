@@ -8,6 +8,10 @@ class AKVO_UI extends AKVO_BASE{
     include( 'templates/collapsible.php' );
   }
 
+  function status_item( $label, $value ){
+    include( 'templates/status.php' );
+  }
+
 
 }
 
