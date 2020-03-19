@@ -38,6 +38,23 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
 
   function full_report( $response ){
 
+    _e( "<div class='akvo-rsr-full-report'>" );
+    _e( "<h4 class='akvo-status-title'>Activity dates and status</h4>" );
+    $status_items = array(
+      'status_label'        => 'Status',
+      'date_start_planned'  => 'Planned start date',
+      'date_end_planned'    => 'Planned end date',
+      'date_start_actual'   => 'Actual start date',
+      'date_end_actual'     => 'Actual end date'
+    );
+    _e( "<ul class='list-unstyled akvo-status-list'>" );
+    foreach ( $status_items as $slug => $title ) {
+      if( isset( $response->$slug ) ){
+        _e( "<li><b>$title</b> ".$response->$slug."</li>" );
+      }
+    }
+    _e( "</ul>" );
+
     $items = array(
       'project_plan'          => 'Project Plan',
       'goals_overview'        => 'Goals Overview',
@@ -46,8 +63,8 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
       'background'            => 'Background',
       'sustainability'        => 'Sustainability'
     );
-    
-    _e( "<div class='akvo-rsr-full-report'>" );
+
+
     foreach ( $items as $slug => $title ) {
       if( isset( $response->$slug ) ){
         AKVO_UI::getInstance()->collapsible( $title, '', $response->$slug );
