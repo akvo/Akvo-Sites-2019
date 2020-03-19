@@ -4,29 +4,14 @@
 
 		function __construct(){
 
-			add_shortcode( 'akvo_rsr_results', array( $this, 'results' ) );
+			//
 
 
 
 			//add_shortcode( 'akvo_rsr_project_field', array( $this, 'display_project_field' ) );
 		}
 
-		function results( $atts ){
-			ob_start();
-			$atts = shortcode_atts( array(
-				'rsr-id'	=> 'results',
-				'posts_per_page'	=> 10,
-				'page'	=> 1
-			), $atts, 'akvo_rsr_results' );
 
-			
-			$response = $this->get_data_feed_response( $atts );
-
-			$akvo_rsr_results = AKVO_RSR_RESULTS::getInstance();
-
-			$akvo_rsr_results->html( $response->results );
-			return ob_get_clean();
-		}
 
 		function display_project_field( $atts ){
 			$atts = shortcode_atts( array(
@@ -90,50 +75,41 @@
 			return false;
 		}
 
-		function get_data_feed_response( $atts, $api_key = false ){
-
-			$data_feed_id = $atts['rsr-id'];
-
-			$url = $this->get_data_feed_url( $data_feed_id );
-			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
-
-			$json_key = 'df'.$data_feed_id;
-			$_json_expiration = 60 * 10; // 10 minutes
-			$key = $json_key . md5( $url );
+		function getAPIResponse( $url, $api_key = false, $cache_expiration = 600 ){
+			$cache_key = md5( $url );
 
 			$data = array();
-			if ( ! ( $data = get_transient($key) ) ) {
-
+			if ( ! ( $data = get_transient( $cache_key ) ) ) {
 				$args = array( 'headers' => array() );
-
 				if( $api_key ){
 					$args['headers'] = array(
 						'Authorization' => 'Token ' . $api_key,
 					);
 				}
 
-				//set_time_limit(0);
-
 				$request = wp_remote_get( $url, $args );
-
 				if( ! is_wp_error( $request ) ) {
 					$body = wp_remote_retrieve_body( $request );
-
-					// MORE OF YOUR CODE HERE
 					$data = json_decode( $body );
-
-					// IF IT IS NEW, SET THE TRANSIENT FOR NEXT TIME
-					set_transient($key, $data, $_json_expiration);
+					set_transient( $cache_key, $data,  $cache_expiration );    // IF IT IS NEW, SET THE TRANSIENT FOR NEXT TIME
 				}
 				else{
-					// DISPLAYING THE ERROR
-					print_r($request);
+					print_r($request);																// DISPLAYING THE ERROR
 				}
-
 			}
-
 			return $data;
+		}
 
+		function get_data_feed_response( $atts, $api_key = false ){
+			$data_feed_id = $atts['rsr-id'];
+
+			$url = $this->get_data_feed_url( $data_feed_id );
+			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
+
+			//$json_key = 'df'.$data_feed_id;
+			$_json_expiration = 60 * 10; // 10 minutes
+			//$key = $json_key . md5( $url );
+			return $this->getAPIResponse( $url, $api_key, $_json_expiration );
 		}
 
 		function get_feed_api( $url ){

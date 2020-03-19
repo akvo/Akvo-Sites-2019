@@ -2,6 +2,26 @@
 
 class AKVO_RSR_RESULTS extends AKVO_BASE{
 
+  function __construct(){
+    add_shortcode( 'akvo_rsr_results', array( $this, 'shortcode' ) );
+  }
+
+  function shortcode( $atts ){
+    ob_start();
+
+    $atts = shortcode_atts( array(
+      'rsr-id'	=> 'results',
+      'posts_per_page'	=> 10,
+      'page'	=> 1
+    ), $atts, 'akvo_rsr_results' );
+
+    global $akvo_rsr;
+    $response = $akvo_rsr->get_data_feed_response( $atts );
+    $this->html( $response->results );
+
+    return ob_get_clean();
+  }
+
   function html( $results ){
     $i = 1;
     echo "<div class='panel-group rsr-results-group' id='accordion' role='tablist' aria-multiselectable='true'>";
@@ -29,7 +49,21 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
 
     echo "<div class='akvo-rsr-box rsr-indicator'>";
 
-    include('templates/results-indicator.php');
+    $title = $indicator->title . '&nbsp; <span class="badge">' . $tot_periods . 'Periods';
+
+    ob_start();
+    _e( "<ul class='list-inline'>" );
+    _e( "<li><span class='text-muted'>Baseline Year:</span> " . $indicator->baseline_year . "</li>" );
+    _e( "<li><span class='text-muted'>Baseline Value:</span> " . $indicator->baseline_value . "</li>" );
+    _e( "</ul>" );
+    foreach ($indicator->periods as $period){
+      $tot_target_value += floatval( $period->target_value );
+      $tot_actual_value += floatval( $period->actual_value );
+      $this->period_html( $period );
+    }
+    $description = ob_get_clean();
+
+    AKVO_UI::getInstance()->collapsible( $title, $indicator->description, $description );
 
     $this->progress_html( $tot_target_value, $tot_actual_value );
 
@@ -133,3 +167,5 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
 
 
 }
+
+AKVO_RSR_RESULTS::getInstance();

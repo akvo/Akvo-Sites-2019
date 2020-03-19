@@ -3,6 +3,7 @@
 	$sage_includes = [
 			'lib/class-akvo-base.php',					// AKVO BASE CLASS
   		'lib/akvo/main.php',								// Akvo Class
+			'lib/akvo-ui/class-akvo-ui.php',		// AKVO UI
   		'lib/conditional-tag-check.php', 		// ConditionalTagCheck class
   		'lib/config.php',                		// Configuration
   		'lib/extras.php',                		// Custom functions

@@ -7,6 +7,7 @@
 		'pin-widget.php',							/* CUSTOM WP WIDGET FOR CARD */
 		'class-akvo-rsr-results.php',
 		'class-akvo-rsr.php',
+		'class-akvo-rsr-project.php',
 		'class-akvo-card-base.php',
 		'class-akvo-card.php',
 		'class-akvo-list.php',

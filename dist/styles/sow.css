@@ -127,3 +127,12 @@
 }
 
 /* AKVO RSR RESULTS */
+
+/* AKVO RSR FULL REPORT */
+.akvo-rsr-full-report .akvo-collapse-box{
+  border: #eee solid 1px;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+/* AKVO RSR FULL REPORT */
