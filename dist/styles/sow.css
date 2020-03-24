@@ -62,7 +62,7 @@
   font-size: 14px;
 }
 .rsr-result{ background: rgba(240, 240, 240, 0.5); }
-.rsr-indicator{ position: relative; padding-right: 100px; }
+.rsr-indicator{ position: relative; padding-right: 100px; margin-top: 20px; }
 .rsr-indicator .akvo-collapse-box{ border: none; padding: 0; margin-bottom: 0; }
 .rsr-indicator .akvo-collapse-box span.open-icon, .rsr-indicator .akvo-collapse-box span.closed-icon{ display: none !important; }
 .rsr-period{ border: none; border-top: 1px solid #f2f0e6; margin-bottom: 0; }
