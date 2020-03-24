@@ -1,3 +1,33 @@
+/* AKVO UI */
+.akvo-status-item{
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+.akvo-status-item .status-label{
+  font-weight: bold;
+}
+
+.akvo-collapse-box{
+  border: #eee solid 1px;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.akvo-collapse-box a[data-toggle~=collapse] span.closed-icon.pull-right{
+  display: inline-block;
+}
+.akvo-collapse-box a[data-toggle~=collapse] span.open-icon.pull-right{
+  display: none;
+}
+.akvo-collapse-box a[data-toggle~=collapse].collapsed span.closed-icon.pull-right{
+  display: none;
+}
+.akvo-collapse-box a[data-toggle~=collapse].collapsed span.open-icon.pull-right{
+  display: inline-block;
+}
+/* AKVO UI */
+
 /* ACCORDION WIDGET */
 .panel-group .panel{
   border: none;
@@ -33,6 +63,8 @@
 }
 .rsr-result{ background: rgba(240, 240, 240, 0.5); }
 .rsr-indicator{ position: relative; padding-right: 100px; }
+.rsr-indicator .akvo-collapse-box{ border: none; padding: 0; margin-bottom: 0; }
+.rsr-indicator .akvo-collapse-box span.open-icon, .rsr-indicator .akvo-collapse-box span.closed-icon{ display: none !important; }
 .rsr-period{ border: none; border-top: 1px solid #f2f0e6; margin-bottom: 0; }
 .rsr-period .list-inline li{ min-width: 120px;}
 .rsr-period-date{ width: 220px; }
@@ -129,12 +161,7 @@
 /* AKVO RSR RESULTS */
 
 /* AKVO RSR FULL REPORT */
-.akvo-rsr-full-report .akvo-collapse-box{
-  border: #eee solid 1px;
-  background: #fff;
-  padding: 10px;
-  margin-bottom: 10px;
-}
+
 
 .akvo-rsr-full-report .akvo-status-title{
   font-weight: normal;
@@ -149,11 +176,3 @@
 }
 
 /* AKVO RSR FULL REPORT */
-
-.akvo-status-item{
-  display: grid;
-  grid-template-columns: 200px 1fr;
-}
-.akvo-status-item .status-label{
-  font-weight: bold;
-}

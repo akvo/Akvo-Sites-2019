@@ -23,33 +23,37 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
   }
 
   function html( $results ){
-    $i = 1;
     echo "<div class='panel-group rsr-results-group' id='accordion' role='tablist' aria-multiselectable='true'>";
     foreach ($results as $result) {
-      $this->result_html( $result, $i );
-      $i++;
+      $this->result_html( $result );
     }
     echo "</div>";
   }
 
-  function result_html( $result, $i ){
-    $tot_indicators = count( $result->indicators );
+  function result_html( $result ){
 
-    include( 'templates/results-result.php' );
+    ob_start();
+    foreach ($result->indicators as $indicator){
+      $this->indicator_html( $indicator );
+    }
+    $collapsed_html = ob_get_clean();
+
+    $tot_indicators = count( $result->indicators );
+    $title = "<span class='indicator-title'>" . $result->title . "</span><span class='badge'>" . $tot_indicators . " Indicators</span>";
+
+    AKVO_UI::getInstance()->collapsible( $title, '', $collapsed_html );
   }
 
-  function indicator_html( $indicator, $j ){
+  function indicator_html( $indicator ){
 
     $tot_periods = count( $indicator->periods );
-
-    $collapse_id = "collapse-indicator" . $j;
 
     $tot_target_value = 0;
     $tot_actual_value = 0;
 
     echo "<div class='akvo-rsr-box rsr-indicator'>";
 
-    $title = $indicator->title . '&nbsp; <span class="badge">' . $tot_periods . 'Periods';
+    $title = $indicator->title . '&nbsp; <span class="badge">' . $tot_periods . ' Periods</span>';
 
     ob_start();
     _e( "<ul class='list-inline'>" );
