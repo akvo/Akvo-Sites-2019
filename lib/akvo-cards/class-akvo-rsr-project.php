@@ -34,6 +34,9 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
         AKVO_RSR_FINANCES::getInstance()->html( $partnershipResponse, $projectResponse );
         break;
 
+      case 'updates':
+        echo do_shortcode( "[akvo-cards template='card-featured' posts_per_page='4' rsr-id='' type='rsr' pagination=1 rsr-project='".$atts['id']."' pagination_style='pages']" );
+        break;
     }
 
     return ob_get_clean();
@@ -87,6 +90,8 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
 
   function getUrl( $project_id, $slug ){
     switch( $slug ){
+      case 'updates':
+        return "https://rsr.akvo.org/rest/v1/project_update/?format=json&project=$project_id&image_thumb_name=big";
       case 'partnership':
         return "https://rsr.akvo.org/rest/v1/partnership/?project=$project_id&format=json";
       case 'report':

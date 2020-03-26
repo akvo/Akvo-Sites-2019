@@ -101,12 +101,17 @@
 		}
 
 		function get_data_feed_response( $atts, $api_key = false ){
-			$data_feed_id = $atts['rsr-id'];
-
-			$url = $this->get_data_feed_url( $data_feed_id );
+			$url = "";
+			// IF API URL IS PASSED THEN SET TO URL OR GET IT FROM DATA FEED ID
+			if( isset( $atts['rsr-project'] ) && $atts['rsr-project'] && $atts['type'] == 'rsr' ){
+				$url = AKVO_RSR_PROJECT::getInstance()->getUrl( $atts['rsr-project'], 'updates' );
+			}
+			else{
+				$url = $this->get_data_feed_url( $atts['rsr-id'] );
+			}
+			// ADD PAGINATION PARAMETERS TO THE URL
 			$url .= "&limit=" . $atts['posts_per_page']."&page=" . $atts['page'];
 
-			//$json_key = 'df'.$data_feed_id;
 			$_json_expiration = 60 * 10; // 10 minutes
 			//$key = $json_key . md5( $url );
 			return $this->getAPIResponse( $url, $api_key, $_json_expiration );

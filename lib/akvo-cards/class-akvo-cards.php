@@ -21,7 +21,8 @@
 				'filter_by'					=> '',
 				'page' 							=> 1,
 				'pagination' 				=> 0,
-				'pagination_style'	=> 'lazy'
+				'pagination_style'	=> 'lazy',
+				'rsr-project'				=> 0
 			);
 		}
 
