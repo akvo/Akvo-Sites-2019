@@ -29,9 +29,11 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
         break;
 
       case 'finances':
+        $budgetResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'budget' ) );
         $partnershipResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'partnership' ) );
         $projectResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'report' ) );
-        AKVO_RSR_FINANCES::getInstance()->html( $partnershipResponse, $projectResponse );
+        $transactionResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'transaction' ) );
+        AKVO_RSR_FINANCES::getInstance()->html( $budgetResponse, $partnershipResponse, $projectResponse, $transactionResponse );
         break;
 
       case 'updates':
@@ -90,6 +92,10 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
 
   function getUrl( $project_id, $slug ){
     switch( $slug ){
+      case 'budget':
+        return "https://rsr.akvo.org/rest/v1/budget_item/?project=$project_id&format=json";
+      case 'transaction':
+        return "https://rsr.akvo.org/rest/v1/transaction/?project=$project_id&format=json";
       case 'updates':
         return "https://rsr.akvo.org/rest/v1/project_update/?format=json&project=$project_id&image_thumb_name=big";
       case 'partnership':
