@@ -14,23 +14,26 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
       'tab'   => 'results'
     ), $atts, 'akvo_rsr_project' );
 
-    $url = $this->getUrl( $atts );
-
     global $akvo_rsr;
-    $response = $akvo_rsr->getAPIResponse( $url );
 
     switch( $atts['tab'] ){
 
       case 'full_report':
+        $response = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'report' ) );
         $this->full_report( $response );
         break;
 
       case 'results':
+        $response = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], $atts['tab'] ) );
         AKVO_RSR_RESULTS::getInstance()->html( $response->results );
         break;
 
-      default:
-        print_r( $response );
+      case 'finances':
+        $partnershipResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'partnership' ) );
+        $projectResponse = $akvo_rsr->getAPIResponse( $this->getUrl( $atts['id'], 'report' ) );
+        AKVO_RSR_FINANCES::getInstance()->html( $partnershipResponse, $projectResponse );
+        break;
+
     }
 
     return ob_get_clean();
@@ -82,13 +85,14 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
     _e( "</div>" );
   }
 
-  function getUrl( $atts ){
-    $id = $atts['id'];
-    switch( $atts['tab'] ){
-      case 'full_report':
-        return "https://rsr.akvo.org/rest/v1/project/$id/?format=json";
+  function getUrl( $project_id, $slug ){
+    switch( $slug ){
+      case 'partnership':
+        return "https://rsr.akvo.org/rest/v1/partnership/?project=$project_id&format=json";
+      case 'report':
+        return "https://rsr.akvo.org/rest/v1/project/$project_id/?format=json";
       case 'results':
-        return "https://rsr.akvo.org/rest/v1/results_framework/?project=$id&format=json";
+        return "https://rsr.akvo.org/rest/v1/results_framework/?project=$project_id&format=json";
     }
   }
 

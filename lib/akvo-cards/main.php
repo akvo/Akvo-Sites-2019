@@ -5,6 +5,7 @@
 		'customize-theme/list.php',		/* CUSTOMIZE OPTIONS FOR LIST */
 		'single-widget.php',					/* SINGLE WP WIDGET FOR CARD */
 		'pin-widget.php',							/* CUSTOM WP WIDGET FOR CARD */
+		'class-akvo-rsr-finances.php',
 		'class-akvo-rsr-results.php',
 		'class-akvo-rsr.php',
 		'class-akvo-rsr-project.php',
