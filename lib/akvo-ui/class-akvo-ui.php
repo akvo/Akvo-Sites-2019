@@ -12,6 +12,11 @@ class AKVO_UI extends AKVO_BASE{
     include( 'templates/status.php' );
   }
 
+  function amount_format( $value, $currency ){ return number_format( $value ) . ' ' . $currency; }
+
+  function date_format( $value, $date_format = 'jS M, Y' ){
+    return date( $date_format, strtotime( $value ) );
+  }
 
 }
 

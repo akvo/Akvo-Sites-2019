@@ -72,7 +72,7 @@
 .rsr-period .list-inline li{ min-width: 120px;}
 .rsr-period-date{ width: 220px; }
 .rsr-disaggregations{ border: none; margin-bottom: 0; padding-bottom: 0; }
-.rsr-dimension-item{ border: none; padding: 0 10px; margin-bottom: 0;}
+
 
 .akvo-rsr-box h5{
   line-height: 1.5;
@@ -161,9 +161,7 @@
   display: inline-block;
 }
 
-.akvo-budget-list .akvo-status-item{
-  grid-template-columns: 1fr 200px;
-}
+
 
 /* AKVO RSR RESULTS */
 

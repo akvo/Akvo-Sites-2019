@@ -65,7 +65,10 @@ class AKVO_RSR_PROJECT extends AKVO_BASE{
       if( isset( $response->$slug ) ){
         $value = $response->$slug;
         if( in_array( $slug, array( 'budget', 'funds', 'funds_needed' ) ) ){
-          $value = number_format( $response->$slug ) . ' ' . $response->currency;
+          $value = $akvo_ui->amount_format( $response->$slug, $response->currency );
+        }
+        if( in_array( $slug, array( 'date_start_planned', 'date_end_planned', 'date_start_actual', 'date_end_actual' ) ) ){
+          $value = $akvo_ui->date_format( $response->$slug );
         }
         $akvo_ui->status_item( $title, $value );
       }

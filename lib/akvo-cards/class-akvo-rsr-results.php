@@ -94,14 +94,12 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
   * [indicator]       => 32784
   */
   function period_html( $period ){
+    $akvo_ui = AKVO_UI::getInstance();
 
     echo "<div class='akvo-rsr-box rsr-period'>";
 
-    $phpstartdate = strtotime( $period->period_start );
-    $phpenddate = strtotime( $period->period_end );
-
     echo "<ul class='list-inline'>";
-    echo "<li class='rsr-period-date'>" . date("jS M Y", $phpstartdate) . " - " . date("jS M Y", $phpenddate) . "</li>";
+    echo "<li class='rsr-period-date'>" . $akvo_ui->date_format( $period->period_start ) . " - " . $akvo_ui->date_format( $period->period_end ) . "</li>";
     echo "<li><span class='text-muted'>TARGET:</span> ".$period->target_value."</li>";
     echo "<li><span class='text-muted'>ACTUAL:</span> ".$period->actual_value."</li>";
     echo "</ul>";
@@ -150,25 +148,14 @@ class AKVO_RSR_RESULTS extends AKVO_BASE{
   }
 
   function dimension_html( $dimension ){
+    $akvo_ui = AKVO_UI::getInstance();
     echo "<div class='akvo-rsr-box rsr-disaggregations'>";
     echo "<p class='text-muted'>".$dimension['title']."</p>";
     foreach ($dimension['items'] as $dimension_item) {
-      $this->dimension_item_html( $dimension_item );
+      $akvo_ui->status_item( $dimension_item['label'], $dimension_item['value'] );
     }
-
-    //echo "<pre>";
-    //print_r( $dimension );
-    //echo "</pre>";
-
     echo "</div>";
   }
-
-  function dimension_item_html( $dimension_item ){
-    echo "<div class='akvo-rsr-box rsr-dimension-item'>";
-    echo "<p>".$dimension_item['label']." : ".$dimension_item['value']."</p>";
-    echo "</div>";
-  }
-
 
 }
 
