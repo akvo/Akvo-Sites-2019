@@ -181,3 +181,7 @@
 }
 
 /* AKVO RSR FULL REPORT */
+
+/*AKVO SOW TABS */
+.akvo-sow-tabs .nav>li:not(.active)>a:hover {color: white;}
+/*AKVO SOW TABS */
