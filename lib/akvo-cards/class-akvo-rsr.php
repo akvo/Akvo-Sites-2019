@@ -177,20 +177,27 @@
 
 			/* RSR OBJECT IMAGE */
 			if( $type == 'project' && isset( $rsr_obj->current_image ) ){
-				$data['img'] = $base_url.$rsr_obj->current_image;
+				$data['img'] = $this->getImageUrl( $rsr_obj->current_image, $base_url );
 			}
 			elseif( $type == 'update' && isset( $rsr_obj->photo ) ){
 				if( isset( $rsr_obj->photo->original ) ){
-					$data['img'] = $base_url.$rsr_obj->photo->original;
+					$data['img'] = $this->getImageUrl( $rsr_obj->photo->original, $base_url );
 				}
 				else{
-					$data['img'] = $base_url.$rsr_obj->photo;
+					$data['img'] = $this->getImageUrl(  $rsr_obj->photo, $base_url );
 				}
 			}
 			/* RSR OBJECT IMAGE */
 
 			return $data;
 
+		}
+
+		function getImageUrl( $imageUrl, $baseUrl ){
+			if( strpos( $imageUrl, 'https://' ) !== false ) {
+    		return $imageUrl;
+			}
+			return $baseUrl.$imageUrl;
 		}
 
 
