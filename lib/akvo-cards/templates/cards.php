@@ -8,6 +8,8 @@
 			$shortcode = '[akvo-card';
 
 			foreach($data[0] as $key=>$val){	/* ADD ATTRIBUTES TO THE SHORTCODE */
+				$val = str_replace( "[", "", $val );
+				$val = str_replace( "]", "", $val );
 				$shortcode .= ' '.$key.'="'.$val.'"';
 			}
 
