@@ -13,7 +13,7 @@
 			} );
 
 			/* REMOVE HELP FROM DASHBOARD */
-			add_filter( 'contextual_help', array( $this, 'contextual_help' ), 999, 3 );
+			//add_filter( 'contextual_help', array( $this, 'contextual_help' ), 999, 3 );
 
 			// REMOVE LINKS FROM TOP ADMIN BAR
 			add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 999 );
