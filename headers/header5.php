@@ -2,7 +2,7 @@
 <header role="banner" class="header5">
 	<div class="logobrand">
 		<?php get_template_part('partials/logo');?>
-	</div>	
+	</div>
 	<button type="button" class="navbar-toggle" data-toggle="modal" data-target="#header5-modal">
 		<span class="sr-only">Toggle navigation</span>
 		<span class="icon-bar"></span>
@@ -17,10 +17,11 @@
 			<div class="modal-body">
 				<button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
 				<?php if( has_nav_menu( 'primary_navigation' ) ){ $akvo->nav_menu(); } ?>
+				<?php if ( function_exists ( 'wpm_language_switcher' ) ){ wpm_language_switcher(); } ?>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->	
+</div><!-- /.modal -->
 
 <style>
 	.body-header5 #main-page-container{
